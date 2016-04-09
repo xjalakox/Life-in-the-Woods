@@ -22,11 +22,11 @@ public class Game extends Canvas implements Runnable {
 	public static final int SCALE = 4;
 	
 	public static SpriteSheet sheet,sheet2;
-//	
-///	public static Camera cam;
-//	
+	
+	public static Camera cam;
+	
 	public static Sprite[] player = new Sprite[20];
-	public static Sprite bg;
+	public static Sprite bg,ground;
 	private BufferedImage background;
 	
 	private boolean running = false;
@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 		handler.tick();
 		for(Entity e:Handler.entity){
 			if(e.getId()==Id.player) {
-//			/	cam.tick(e);
+				cam.tick(e);
 			}
 		}
 		
@@ -72,10 +72,10 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
 		
-//		g2d.translate(cam.getX(), cam.getY());
-		g.drawImage(background,0 , 0, getWidth(), getHeight(), this);
+		g2d.translate(cam.getX(), cam.getY());
+		g.drawImage(background,0 , 0, 4200, 3200, this);
 		handler.render(g);
-//		g2d.translate(-cam.getX(), -cam.getY());
+		g2d.translate(-cam.getX(), -cam.getY());
 		
 		
 		g.setColor(Color.BLUE);
@@ -92,17 +92,24 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-//		cam = new Camera();
+		cam = new Camera();
 //		
      	sheet = new SpriteSheet("/character.png");
 //		sheet2 = new SpriteSheet("/background_grass.png");
 //		
 //		bg = new Sprite(sheet2,1,1,21,15);
 //		
-		player[0]=new Sprite(sheet, 27,18,27,30);
-		player[1]=new Sprite(sheet, 27,54,27,30);
-		player[2]=new Sprite(sheet, 27,89,27,30);
-		player[3]=new Sprite(sheet, 27,126,27,30);
+	//	player[0]=new Sprite(sheet, 27,18,27,30);
+	//	player[1]=new Sprite(sheet, 27,54,27,30);
+	//	player[2]=new Sprite(sheet, 27,89,27,30);
+	//	player[3]=new Sprite(sheet, 27,126,27,30);
+     	
+    		player[0]=new Sprite(sheet, 27,18,32,32);
+    		player[1]=new Sprite(sheet, 27,54,32,32);
+    		player[2]=new Sprite(sheet, 27,89,32,32);
+    		player[3]=new Sprite(sheet, 27,126,32,32);
+		
+		//ground = new Sprite()
 //		for(int i=0;i<12;i++){
 //			player[i+12]=new Sprite(sheet, i+1,5,2,2);
 //		}
