@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import rpg.entity.Entity;
+import rpg.json.JsonParser;
 
 public class KeyInput implements KeyListener {
 	

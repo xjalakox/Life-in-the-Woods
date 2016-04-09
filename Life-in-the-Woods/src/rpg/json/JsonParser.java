@@ -13,32 +13,19 @@ public class JsonParser {
 
 	private static final String filePath = "C:\\Users\\jalak\\Desktop\\Json Dateien\\jsonTestFile.json";
 	
-	public static void main(String[] args) {
+	public static void outputJSON(long[] array, String JsonName){
 		try {
 			FileReader reader = new FileReader(filePath);
 
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 			
-			JSONArray test2 = (JSONArray) jsonObject.get("data");
+			JSONArray test2 = (JSONArray) jsonObject.get(JsonName);
+			
 			
 			for(int a=0; a<test2.size(); a++){
-				System.out.println("Das " + a + " Element aus Array: "+test2.get(a));
+				array[a] = (long) test2.get(a);
 			}
-			
-			for(int b=0;b<=100;b++){
-				System.out.println("");
-				for(int c=0;c<=100;c++){
-					if(b*c == 10000){
-						
-					}else{
-						System.out.print(test2.get(b*c));
-						System.out.print(" ");
-					}
-				}
-			}
-
-			
 			
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
@@ -47,8 +34,8 @@ public class JsonParser {
 		} catch (ParseException ex) {
 			ex.printStackTrace();
 		} catch (NullPointerException ex) {
+			System.out.println("JsonName falsch, oder irgendwas anderes?");
 			ex.printStackTrace();
 		}
-
 	}
 }

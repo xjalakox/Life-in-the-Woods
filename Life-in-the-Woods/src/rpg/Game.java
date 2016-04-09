@@ -12,6 +12,7 @@ import rpg.entity.Entity;
 import rpg.gfx.ImageLoader;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
+import rpg.json.JsonParser;
 
 
 @SuppressWarnings("serial")
@@ -24,6 +25,8 @@ public class Game extends Canvas implements Runnable {
 	public static SpriteSheet sheet,sheet2;
 	
 	public static Camera cam;
+	
+	public static long[] data = new long[10000];
 	
 	public static Sprite[] player = new Sprite[20];
 	public static Sprite bg,ground;
@@ -73,7 +76,7 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
 		
 		g2d.translate(cam.getX(), cam.getY());
-		g.drawImage(background,0 , 0, 4200, 3200, this);
+		g.drawImage(background,0 , 0, 4200, 4200, this);
 		handler.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());
 		
@@ -86,6 +89,10 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void init(){
+		//long[] test = new long[10000];
+		
+	//	JsonParser.outputJSON(test);
+		
 		
 		ImageLoader loader = new ImageLoader();
 		background = loader.loadImage("/map.png");

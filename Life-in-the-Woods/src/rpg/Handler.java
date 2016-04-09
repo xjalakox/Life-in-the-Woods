@@ -6,6 +6,7 @@ import java.util.List;
 
 import rpg.entity.Entity;
 import rpg.entity.player;
+import rpg.json.JsonParser;
 import rpg.tile.Tile;
 
 public class Handler {
@@ -40,6 +41,10 @@ public class Handler {
 	
 	public void createLevel(){
 		addEntity(new player(100,100,54,60,Id.player,this));
+		
+		JsonParser.outputJSON(Game.data, "data");
+
+
 		
 	}
 
