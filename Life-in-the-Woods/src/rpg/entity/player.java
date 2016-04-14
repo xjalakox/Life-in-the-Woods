@@ -1,5 +1,6 @@
 package rpg.entity;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import rpg.Game;
@@ -19,6 +20,9 @@ public class player extends Entity {
 		if(facing==0)g.drawImage(Game.player[1].getBufferedImage(), x,y,w,h, null);
 		if(facing==3)g.drawImage(Game.player[2].getBufferedImage(), x,y,w,h, null);
 		if(facing==2)g.drawImage(Game.player[3].getBufferedImage(), x,y,w,h, null);
+		
+		g.setColor(Color.BLUE);
+		g.drawRect(x, y, w, h);
 		
 	}
 

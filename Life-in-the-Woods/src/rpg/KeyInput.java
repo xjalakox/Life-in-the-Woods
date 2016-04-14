@@ -12,19 +12,19 @@ public class KeyInput implements KeyListener {
 		for(Entity en: Handler.entity) {
 			if(en.getId()==Id.player){
 				if(key == KeyEvent.VK_D){
-					en.setVelX(5);
+					en.setVelX(30);
 					en.facing = 3;
 				}
 				if(key == KeyEvent.VK_A){
-					en.setVelX(-5);
+					en.setVelX(-30);
 					en.facing = 0;
 				}
 				if(key == KeyEvent.VK_W){
-					en.setVelY(-5);
+					en.setVelY(-30);
 					en.facing = 2;
 				}
 				if(key == KeyEvent.VK_S){
-					en.setVelY(5);
+					en.setVelY(30);
 					en.facing = 1;
 				}
 				

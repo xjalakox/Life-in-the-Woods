@@ -2,19 +2,20 @@ package rpg.tile;
 
 import java.awt.Graphics;
 
+import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 
 public class Ground extends Tile{
 
-	Ground(int x, int y, int w, int h, Id id, Handler handler) {
+	public Ground(int x, int y, int w, int h, Id id, Handler handler) {
 		super(x, y, w, h, id, handler);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.drawImage(Game.ground.getBufferedImage(), x,y,w,h, null);
 		
 	}
 

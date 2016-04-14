@@ -60,6 +60,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 	}
+
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if(bs==null) {
@@ -88,62 +89,19 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void init(){
-		//long[] test = new long[10000];
-		
-	//	JsonParser.outputJSON(test);
-		
-		
-		ImageLoader loader = new ImageLoader();
-		background = loader.loadImage("/map.png");
 		
 		handler = new Handler();
 		
-		cam = new Camera();
-//		
+		cam = new Camera();		
      	sheet = new SpriteSheet("/character.png");
-//		sheet2 = new SpriteSheet("/background_grass.png");
-//		
-//		bg = new Sprite(sheet2,1,1,21,15);
-//		
-	//	player[0]=new Sprite(sheet, 27,18,27,30);
-	//	player[1]=new Sprite(sheet, 27,54,27,30);
-	//	player[2]=new Sprite(sheet, 27,89,27,30);
-	//	player[3]=new Sprite(sheet, 27,126,27,30);
+     	sheet2 = new SpriteSheet("/Tiles/rpg set.png");
+     	ground = new Sprite(sheet2, 192,64,32,32);
      	
-    		player[0]=new Sprite(sheet, 27,18,32,32);
-    		player[1]=new Sprite(sheet, 27,54,32,32);
-    		player[2]=new Sprite(sheet, 27,89,32,32);
-    		player[3]=new Sprite(sheet, 27,126,32,32);
-		
-		//ground = new Sprite()
-//		for(int i=0;i<12;i++){
-//			player[i+12]=new Sprite(sheet, i+1,5,2,2);
-//		}
-//		
-//		for(int i=0;i<12;i++){
-//			player[i+24]=new Sprite(sheet, i+1,2,2,2);
-//		}
-//		for(int i=0;i<12;i++){
-//			player[i+36]=new Sprite(sheet, i+1,6,2,2);
-//		}
-//	
-//		for(int i=0;i<12;i++){
-//			player[i+48]=new Sprite(sheet, i+1,3,2,2);
-//		}
-//		for(int i=0;i<12;i++){
-//			player[i+60]=new Sprite(sheet, i+1,7,2,2);
-//		}
-//		
-//		for(int i=0;i<12;i++){
-//			player[i+72]=new Sprite(sheet, i+1,4,2,2);
-//		}
-//		for(int i=0;i<12;i++){
-//			player[i+84]=new Sprite(sheet, i+1,8,2,2);
-//		}
-//		
-//		
-//		ImageLoader loader = new ImageLoader();
-	//	background = loader.loadImage("/background_grass.png");
+    	player[0]=new Sprite(sheet, 27,18,32,32);
+    	player[1]=new Sprite(sheet, 27,54,32,32);
+    	player[2]=new Sprite(sheet, 27,89,32,32);
+    	player[3]=new Sprite(sheet, 27,126,32,32);
+    	
 		handler.createLevel();
 		addKeyListener(new KeyInput());
 	}
