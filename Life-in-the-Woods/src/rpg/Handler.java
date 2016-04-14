@@ -52,13 +52,48 @@ public class Handler {
 		
 		JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(0)).get("data");
 		
-		int a = 0;
-		int b = 0;
+		JSONObject[] test = new JSONObject[13];
+//		for(int i=0;i<test.length;i++){
+//			JSONObject data2 = ((JSONObject)((JSONArray)map1.get("tilesets")).get(i));
+//			System.out.println(data2);
+//			System.out.println(data2.get("imageheight") - );
+//			
+//		}
+		
+		JSONObject data2 = ((JSONObject)((JSONArray)map1.get("tilesets")).get(1));
+		
+		long test1 = (long) data2.get("imagewidth");
+		System.out.println(test1);
+		long test2 = (long) data2.get("imageheight");
+		
+		long test3 = 0;
+		
+		while(test1<0){
+			test1-=32;
+			test3++;
+			System.out.println(test3);
+		}
+		
+		int a = 6;
+		int b = 7;
+		int c = 0;
+		while(a-b>=-1){
+			a = a - b;
+			c++;
+		}
+		
+		System.out.println(c);
+		
+		
+	//	System.out.println(data2.get("tilecount"));
+		
+		//int a = 0;
+		//int b = 0;
 		
 		for(int i=0;i<data.size();i++){
 			//System.out.println(test.get(i)); 
 			if(i % 100 == 0){
-				System.out.println(i);
+			//	System.out.println(i);
 				b++;
 				a=0;
 			}
