@@ -12,7 +12,6 @@ import rpg.entity.Entity;
 import rpg.gfx.ImageLoader;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
-import rpg.json.JsonParser;
 
 
 @SuppressWarnings("serial")
