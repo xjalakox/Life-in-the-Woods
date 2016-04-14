@@ -111,7 +111,6 @@ public class Game extends Canvas implements Runnable {
 		init();
 		requestFocus();
 		long lastTime = System.nanoTime();
-		long timer = System.currentTimeMillis();
 		double delta = 0;
 		double ns = 1000000000.0/60.0;
 		int ticks = 0;
