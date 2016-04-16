@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import rpg.audio.SoundManager;
 import rpg.entity.Entity;
 import rpg.gfx.ImageLoader;
 import rpg.gfx.Sprite;
@@ -23,8 +24,8 @@ import static java.lang.Math.toIntExact;
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 
-	public static final int WIDTH = 320;
-	public static final int HEIGHT = 180;
+	public static final int WIDTH = 480;
+	public static final int HEIGHT = 270;
 	public static final int SCALE = 4;
 	
 	private static String file1 = "res/Maps/map1.json";
@@ -101,6 +102,9 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
+		SoundManager manger = new SoundManager();
+		manger.playSound(8);
+		
 		handler = new Handler();
 		
      	sheet = new SpriteSheet("/character.png");
@@ -130,7 +134,7 @@ public class Game extends Canvas implements Runnable {
 			long width = (long) data1.get("imagewidth") / 32;
 			long height = (long) data1.get("imageheight") /32 ;
 			
-			System.out.println(width + " " + height);
+			System.out.println("Spritesheet wird ausgelesen: " + a);
 			for(int b=0;b<height;b++){
 				for(int c=0;c<width;c++){
 					sprites[z+1] = new Sprite(sheets[a], toIntExact(c*32),toIntExact(b*32),32,32);

@@ -55,7 +55,8 @@ public class Handler {
 
 		for(int j=0;j<=21;j++){
 			JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-			for(int i=0;i<data.size();i++){
+			System.out.println("Welt wird geladen: " + j);
+			for(int i=0;i<data.size();i++){ 
 				long test1 = (long) data.get(i);
 				if(i % 100 == 0){
 					b++;

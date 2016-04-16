@@ -27,6 +27,9 @@ public class KeyInput implements KeyListener {
 					en.setVelY(30);
 					en.facing = 1;
 				}
+				if(key == KeyEvent.VK_ESCAPE){
+					System.exit(0);
+				}
 				
 			}
 		}
