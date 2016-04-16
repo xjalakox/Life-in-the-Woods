@@ -31,9 +31,6 @@ public class Menu extends JFrame {
 	private JLabel start;
 	private JLabel close;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,9 +45,6 @@ public class Menu extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Menu() {
 		
 
@@ -69,70 +63,70 @@ public class Menu extends JFrame {
 		mainpanel.setLayout(null);
 		super.add(mainpanel);
 		
-		mainlabel = new JLabel(new ImageIcon(getClass().getResource("/resource/homescreen.jpg")));
+		Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
+		Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
+		Image image3 = new ImageIcon(this.getClass().getResource("/Menu/close_hover.png")).getImage();
+		Image image4 = new ImageIcon(this.getClass().getResource("/Menu/start_pressed.png")).getImage();
+		Image image5 = new ImageIcon(this.getClass().getResource("/Menu/start_hover.png")).getImage();
+		Image image6 = new ImageIcon(this.getClass().getResource("/Menu/close_pressed.png")).getImage();
+		Image image7 = new ImageIcon(this.getClass().getResource("/Menu/close_default.png")).getImage();
+		
+		
+		mainlabel = new JLabel(new ImageIcon(image1));
 		mainlabel.doLayout();
 		mainlabel.setBounds(0,0,getWidth(),getHeight());
 		mainpanel.add(mainlabel);
 		
 		start = new JLabel();
-		start.setIcon(new ImageIcon(getClass().getResource("/resource/start_default.png")));
+		start.setIcon(new ImageIcon(image2));
 		start.setBounds(735,500,500,191);
 		start.addMouseListener(new MouseAdapter() {
 									
 					boolean sgHover = false;
 							
 					public void mouseEntered(MouseEvent evt) {
-						start.setIcon(new ImageIcon(getClass().getResource("/resource/start_hover.png")));
+						start.setIcon(new ImageIcon(image5));
 						sgHover = true;
 					}
 					public void mouseExited(MouseEvent evt) {
-						start.setIcon(new ImageIcon(getClass().getResource("/resource/start_default.png")));
+						start.setIcon(new ImageIcon(image2));
 						sgHover = false;
 					}
 					public void mousePressed(MouseEvent evt) {
-						start.setIcon(new ImageIcon(getClass().getResource("/resource/start_pressed.png")));
+						start.setIcon(new ImageIcon(image4));
 						Close();
-						Game game = new Game();
-						JFrame frame = new JFrame("RPG");
-						frame.add(game);
-						frame.pack();
-						frame.setResizable(false);
-						frame.setLocationRelativeTo(null);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						frame.setVisible(true);
-
-						game.start();
+						Main.main(null);
 					}
 					public void mouseReleased(MouseEvent evt) {
 						if (sgHover == true) {
-						start.setIcon(new ImageIcon(getClass().getResource("/resource/start_hover.png")));
+						start.setIcon(new ImageIcon(image5));
 					}
 				}
 		});
 		mainlabel.add(start);
 		
 		close = new JLabel();
-		close.setIcon(new ImageIcon(getClass().getResource("/resource/close_default.png")));
+		close.setIcon(new ImageIcon(image7));
 		close.setBounds(1830,15,69,69);
 		close.addMouseListener(new MouseAdapter() {
 									
 					boolean sgHover = false;
 							
 					public void mouseEntered(MouseEvent evt) {
-						close.setIcon(new ImageIcon(getClass().getResource("/resource/close_hover.png")));
+						close.setIcon(new ImageIcon(image3));
 						sgHover = true;
 					}
 					public void mouseExited(MouseEvent evt) {
-						close.setIcon(new ImageIcon(getClass().getResource("/resource/close_default.png")));
+						close.setIcon(new ImageIcon(image7));
 						sgHover = false;
 					}
 					public void mousePressed(MouseEvent evt) {
-						close.setIcon(new ImageIcon(getClass().getResource("/resource/close_pressed.png")));
+						close.setIcon(new ImageIcon(image6));
 						Close();
 					}
 					public void mouseReleased(MouseEvent evt) {
 						if (sgHover == true) {
-						close.setIcon(new ImageIcon(getClass().getResource("/resource/close_hover.png")));
+						close.setIcon(new ImageIcon(image3));
 					}
 				}
 		});
