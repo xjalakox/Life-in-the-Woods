@@ -10,8 +10,8 @@ import org.json.simple.JSONObject;
 import rpg.entity.Entity;
 import rpg.entity.player;
 import rpg.json.JSONDecoder;
-import rpg.tile.Ground;
 import rpg.tile.Tile;
+import rpg.tile.obj;
 
 public class Handler {
 	public static List<Entity> entity = new ArrayList<Entity>();
@@ -50,54 +50,29 @@ public class Handler {
 
 		JSONObject map1 = JSONDecoder.loadMapData(file1);
 		
-		JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(0)).get("data");
+		JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(4)).get("data");
 		
-		JSONObject[] test = new JSONObject[13];
-//		for(int i=0;i<test.length;i++){
-//			JSONObject data2 = ((JSONObject)((JSONArray)map1.get("tilesets")).get(i));
-//			System.out.println(data2);
-//			System.out.println(data2.get("imageheight") - );
-//			
-//		}
-		
-		JSONObject data2 = ((JSONObject)((JSONArray)map1.get("tilesets")).get(1));
-		
-		long test1 = (long) data2.get("imagewidth");
-		System.out.println(test1);
-		long test2 = (long) data2.get("imageheight");
-		
-		long test3 = 0;
-		
-		while(test1<0){
-			test1-=32;
-			test3++;
-			System.out.println(test3);
-		}
-		
-		int a = 6;
-		int b = 7;
-		int c = 0;
-		while(a-b>=-1){
-			a = a - b;
-			c++;
-		}
-		
-		System.out.println(c);
+		int a = 0;
+		int b = 0;
 		
 		
-	//	System.out.println(data2.get("tilecount"));
-		
-		//int a = 0;
-		//int b = 0;
+
 		
 		for(int i=0;i<data.size();i++){
-			//System.out.println(test.get(i)); 
+			//System.out.println(data.get(i)); 
+			long test1 = (long) data.get(i);
 			if(i % 100 == 0){
 			//	System.out.println(i);
 				b++;
 				a=0;
 			}
-			addTile(new Ground(a*32,b*32,32,32,Id.ground,this));
+			if(test1==0){
+				//System.out.println("test1 ist:" + test1);
+				addTile(new obj(a*32,b*32,32,32,Id.ground,this,(long) data.get(i)+1));
+			}else{
+				System.out.println("test 1 ist:" + test1);
+				addTile(new obj(a*32,b*32,32,32,Id.ground,this,(long) data.get(i)));
+			}
 			a++;
 		}
 		
