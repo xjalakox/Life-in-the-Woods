@@ -17,8 +17,6 @@ public class Handler {
 	public static List<Entity> entity = new ArrayList<Entity>();
 	public static List<Tile> tile = new ArrayList<Tile>();
 	
-	//private static String file1 = "res/Maps/map1.json";
-	
 	public void render(Graphics g){
 		for(Tile ti:tile){
 			ti.render(g);
