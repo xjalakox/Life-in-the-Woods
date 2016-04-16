@@ -12,15 +12,19 @@ import org.json.simple.parser.JSONParser;
 
 public class JSONDecoder {
 	
-	private static String file1 = "res/map.json";
+	private static String file1 = "res/Maps/map1.json";
 	
 	public static void main(String[] args) {
 		JSONObject map1 = loadMapData(file1);
 		
+		JSONObject data2 = (JSONObject) ((JSONArray)map1.get("tilesets")).get(1);
+		
+		System.out.println(data2);
+		
 		JSONArray test = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(0)).get("data");
 		
 		for(int i=0;i<test.size();i++){
-			System.out.println(test.get(i));
+		//	System.out.println(test.get(i));
 		}
 		
 //		long test = map1.getTilewidth();

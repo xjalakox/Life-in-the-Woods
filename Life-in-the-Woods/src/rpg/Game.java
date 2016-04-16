@@ -8,10 +8,16 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import rpg.entity.Entity;
 import rpg.gfx.ImageLoader;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
+import rpg.json.JSONDecoder;
+
+import static java.lang.Math.toIntExact;
 
 
 @SuppressWarnings("serial")
@@ -21,13 +27,18 @@ public class Game extends Canvas implements Runnable {
 	public static final int HEIGHT = 180;
 	public static final int SCALE = 4;
 	
-	public static SpriteSheet sheet,sheet2;
+	private static String file1 = "res/Maps/map1.json";
+	
+	public static SpriteSheet sheet,sheet2,sheet3;
+	public static SpriteSheet[] sheets = new SpriteSheet[20];
 	
 	public static Camera cam;
 	
 	public static long[] data = new long[10000];
 	
 	public static Sprite[] player = new Sprite[20];
+	
+	public static Sprite[] sprites = new Sprite[4000];
 	public static Sprite bg,ground;
 	private BufferedImage background;
 	
@@ -92,10 +103,44 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-		cam = new Camera();		
      	sheet = new SpriteSheet("/character.png");
-     	sheet2 = new SpriteSheet("/Tiles/rpg set.png");
-     	ground = new Sprite(sheet2, 192,64,32,32);
+     	sheet2 = new SpriteSheet("/Tiles/nature.png");
+     	sheet3 = new SpriteSheet("/Tiles/rpg set.png");
+     	
+     	sheets[0] = new SpriteSheet("/Tiles/nature.png");
+     	sheets[1] = new SpriteSheet("/Tiles/rpg set.png");
+     	sheets[2] = new SpriteSheet("/Tiles/floor wood.png");
+     	sheets[3] = new SpriteSheet("/Tiles/windows.png");
+     	sheets[4] = new SpriteSheet("/Tiles/doors.png");
+     	sheets[5] = new SpriteSheet("/Tiles/flowerpots.png");
+     	sheets[6] = new SpriteSheet("/Tiles/kitchen.png");
+     	sheets[7] = new SpriteSheet("/Tiles/furniture.png");
+     	sheets[8] = new SpriteSheet("/Tiles/furniture2.png");
+     	sheets[9] = new SpriteSheet("/Tiles/trees2.png");
+     	sheets[10] = new SpriteSheet("/Tiles/paintings.png");
+     	sheets[11] = new SpriteSheet("/Tiles/statues.png");
+     	sheets[12] = new SpriteSheet("/Tiles/trees.png");
+     	
+     	JSONObject map1 = JSONDecoder.loadMapData(file1);
+		
+     	int z = 0;
+     	
+		for(int a=0;a<13;a++){
+			JSONObject data1 = (JSONObject) ((JSONArray)map1.get("tilesets")).get(a);
+			long width = (long) data1.get("imagewidth") / 32;
+			long height = (long) data1.get("imageheight") /32 ;
+			
+			System.out.println(width + " " + height);
+			for(int b=0;b<height;b++){
+				for(int c=0;c<width;c++){
+					sprites[z+1] = new Sprite(sheets[a], toIntExact(c*32),toIntExact(b*32),32,32);
+					z++;
+				}
+			}
+		}
+		
+		cam = new Camera();		
+     	ground = new Sprite(sheet3, 192,64,32,32);
      	
     	player[0]=new Sprite(sheet, 27,18,32,32);
     	player[1]=new Sprite(sheet, 27,54,32,32);

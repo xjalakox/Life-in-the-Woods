@@ -6,16 +6,16 @@ import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 
-public class Ground extends Tile{
+public class obj extends Tile{
 
-	public Ground(int x, int y, int w, int h, Id id, Handler handler) {
-		super(x, y, w, h, id, handler);
+	public obj(int x, int y, int w, int h, Id id, Handler handler, long arrayzahl) {
+		super(x, y, w, h, id, handler,arrayzahl);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Game.ground.getBufferedImage(), x,y,w,h, null);
+		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x,y,w,h, null);
 		
 	}
 
