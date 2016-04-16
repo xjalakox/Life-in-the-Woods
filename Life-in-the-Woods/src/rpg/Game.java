@@ -147,7 +147,7 @@ public class Game extends Canvas implements Runnable {
     	player[2]=new Sprite(sheet, 27,89,32,32);
     	player[3]=new Sprite(sheet, 27,126,32,32);
     	
-		handler.createLevel();
+		handler.createLevel("res/Maps/map1.json");
 		addKeyListener(new KeyInput());
 	}
 	
