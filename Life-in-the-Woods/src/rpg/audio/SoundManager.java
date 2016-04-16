@@ -26,9 +26,13 @@ public class SoundManager {
      
     public void stopSound(int id) {
         try {
-            //System.out.println("Schlieﬂt " + clipList[id]);
             clipList[id].stop();
         } catch(Exception ex) {} 
+    }
+    
+    public void fadeInSound(int id){
+    	gainControl[id].setValue(soundList[id].getVolume()+20);
+    	//for(int i=0;i<=)
     }
      
     ///// PRIVATE INNER CLASS /////
@@ -55,6 +59,8 @@ public class SoundManager {
             this.vol = vol;
         }
     }
+    
+ 
      
     public void setVolume(int id, float volume) {
         gainControl[id].setValue(volume);

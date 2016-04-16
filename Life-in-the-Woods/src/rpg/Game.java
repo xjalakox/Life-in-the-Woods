@@ -104,6 +104,7 @@ public class Game extends Canvas implements Runnable {
 		
 		SoundManager manger = new SoundManager();
 		manger.playSound(2);
+		manger.fadeInSound(2);
 		
 		handler = new Handler();
 		
