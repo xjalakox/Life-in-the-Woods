@@ -103,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 	public void init(){
 		
 		SoundManager manger = new SoundManager();
-		manger.playSound(8);
+		manger.playSound(2);
 		
 		handler = new Handler();
 		

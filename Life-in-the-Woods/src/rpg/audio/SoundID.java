@@ -18,7 +18,7 @@ public enum SoundID {
      
     private int id;
     private String prefix = "res/Sound/";
-    private String suffix = ".mp3";
+    private String suffix = ".wav";
     private String name;
     // musicvol // effectvol // mastervol//
     private int[] volList = { -20, -20, -20};
