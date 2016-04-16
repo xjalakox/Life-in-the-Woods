@@ -81,20 +81,12 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D)g;
-		
-		//g.drawImage(background,0 , 0, getWidth(), getHeight(), this);
-		g.drawRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
 		
 		g2d.translate(cam.getX(), cam.getY());
-		g.drawImage(background,0 , 0, 4200, 4200, this);
 		handler.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());
-		
-		
-		g.setColor(Color.BLUE);
-		g.setFont(new Font("Verdana", Font.BOLD, 23));
 		
 		g.dispose();
 		bs.show();
@@ -144,7 +136,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		cam = new Camera();		
-     	ground = new Sprite(sheet3, 192,64,32,32);
+
      	
     	player[0]=new Sprite(sheet, 27,18,32,32);
     	player[1]=new Sprite(sheet, 27,54,32,32);
