@@ -52,8 +52,8 @@ public class Menu extends JFrame {
 
 	public Menu() {
 		
-
-		CustomCursor();
+		CustomCursor Cursor = new CustomCursor("default");
+		setCursor(CustomCursor.cursor);
 		
 		setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,14 +61,13 @@ public class Menu extends JFrame {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		addKeyListener(new MenuInput());
 		
 		mainpanel = new JPanel();
 		mainpanel.setSize(getWidth(),getHeight());
 		mainpanel.setVisible(true);
 		mainpanel.setLayout(null);
 		super.add(mainpanel);
-		
-		addKeyListener(new MenuInput());
 		
 		Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
 		Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
@@ -142,34 +141,5 @@ public class Menu extends JFrame {
 
 	public void Close(){
 		super.dispose();
-	}
-	
-	public void CustomCursor(){
-		 try {
-             Toolkit kit = Toolkit.getDefaultToolkit();
-             BufferedImage cursorImage = ImageIO.read(new File("res/Cursor/cursor_default.png"));
-             for (int i = 0; i < cursorImage.getHeight(); i++) {
-                 int[] rgb = cursorImage.getRGB(0, i, cursorImage.getWidth(), 1, null, 0, cursorImage.getWidth() * 4);
-                 for (int j = 0; j < rgb.length; j++) {
-                     int alpha = (rgb[j] >> 24) & 255;
-                     if (alpha < 128) {
-                         alpha = 0;
-                     } else {
-                         alpha = 255;
-                     }
-                     rgb[j] &= 0x00ffffff;
-                     rgb[j] = (alpha << 24) | rgb[j];
-                 }
-                 cursorImage.setRGB(0, i, cursorImage.getWidth(), 1, rgb, 0,
-                         cursorImage.getWidth() * 4);
-             }
-             Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(
-                     cursorImage, new Point(0, 0), "CustomCursor");
-
-             setCursor(cursor);
-
-         } catch (Exception exp) {
-             exp.printStackTrace();
-         }
 	}
 }
