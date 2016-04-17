@@ -30,6 +30,9 @@ public class KeyInput implements KeyListener {
 				if(key == KeyEvent.VK_ESCAPE){
 					System.exit(0);
 				}
+				if(key == KeyEvent.VK_J){
+					LevelChanger.ChangeMusic(3,1,true);
+				}
 				
 			}
 		}

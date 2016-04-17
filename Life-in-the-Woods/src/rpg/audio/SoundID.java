@@ -4,17 +4,18 @@ public enum SoundID {
     //template      (   id, name,           vol),
      
     //Music
-    intro           (   0,  "intro",        3),
-    world1          (   1,  "athletic",     3),
+    intro           (   1,  "intro",        3),
+    world1          (   2,  "athletic",     3),
+
      
     //Effects
-    brickeffect     (   2,  "brick",        1),
-    jumpeffect      (   3,  "jump",         1),
-    coineffect      (   4,  "coin",         1),
-    coin_appear     (   5,  "coin_appear",  1),
-    editor_menu     (   6,  "editor_menu",  1),
-    akbar           (   7,  "akbar",        1),
-	hi				(	8,	"hi",			1);
+    brickeffect     (   3,  "brick",        1),
+    jumpeffect      (   4,  "jump",         1),
+    coineffect      (   5,  "coin",         1),
+    coin_appear     (   6,  "coin_appear",  1),
+    editor_menu     (   7,  "editor_menu",  1),
+    akbar           (   8,  "akbar",        1);
+	
      
     private int id;
     private String prefix = "res/Sound/";

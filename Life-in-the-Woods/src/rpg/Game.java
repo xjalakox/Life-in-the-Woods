@@ -92,10 +92,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
-		//SoundManager manager = new SoundManager();
-		//manager.playSound(2);
 		
-		//manger.fadeInSound(2);
 		
 		handler = new Handler();
 		
@@ -143,8 +140,11 @@ public class Game extends Canvas implements Runnable {
     	player[2]=new Sprite(sheet, 27,89,32,32);
     	player[3]=new Sprite(sheet, 27,126,32,32);
     	
-		handler.createLevel("res/Maps/map1.json");
+    	
+    	LevelChanger.ChangeMusic(1,1,false);
+    	LevelChanger.ChangeLevel("res/Maps/map1.json");
 		addKeyListener(new KeyInput());
+	
 	}
 	
 	@Override

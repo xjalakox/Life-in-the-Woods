@@ -31,8 +31,25 @@ public class SoundManager {
     }
     
     public void fadeInSound(int id){
-    	gainControl[id].setValue(soundList[id].getVolume()+20);
-    	//for(int i=0;i<=)
+    	for(int i=0;i<=20;i++){
+    		gainControl[id].setValue(soundList[id].getVolume()+i-20);
+    		try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    	}
+    }
+    
+    public void fadeOutSound(int id){
+    	for(int i=0;i<=20;i++){
+    		gainControl[id].setValue(soundList[id].getVolume()-i);
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    	}
     }
      
     ///// PRIVATE INNER CLASS /////
