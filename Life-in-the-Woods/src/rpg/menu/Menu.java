@@ -9,7 +9,11 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import rpg.Game;
+import rpg.KeyInput;
 import rpg.Main;
 
 
@@ -48,7 +53,7 @@ public class Menu extends JFrame {
 	public Menu() {
 		
 
-		//CustomCursor();
+		CustomCursor();
 		
 		setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +67,8 @@ public class Menu extends JFrame {
 		mainpanel.setVisible(true);
 		mainpanel.setLayout(null);
 		super.add(mainpanel);
+		
+		addKeyListener(new MenuInput());
 		
 		Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
 		Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
@@ -79,7 +86,7 @@ public class Menu extends JFrame {
 		
 		start = new JLabel();
 		start.setIcon(new ImageIcon(image2));
-		start.setBounds(735,500,500,191);
+		start.setBounds(735,500,450,172);
 		start.addMouseListener(new MouseAdapter() {
 									
 					boolean sgHover = false;
@@ -137,12 +144,32 @@ public class Menu extends JFrame {
 		super.dispose();
 	}
 	
-//	public void CustomCursor(){
-//		Toolkit toolkit = Toolkit.getDefaultToolkit();
-//		Image img = toolkit.getImage("cursor.png");
-//		Point point = new Point(0,0);
-//		Cursor cursor = toolkit.createCustomCursor(img, point, "Cursor");
-//		
-//		setCursor(cursor);
-//	}
+	public void CustomCursor(){
+		 try {
+             Toolkit kit = Toolkit.getDefaultToolkit();
+             BufferedImage cursorImage = ImageIO.read(new File("res/Cursor/cursor_default.png"));
+             for (int i = 0; i < cursorImage.getHeight(); i++) {
+                 int[] rgb = cursorImage.getRGB(0, i, cursorImage.getWidth(), 1, null, 0, cursorImage.getWidth() * 4);
+                 for (int j = 0; j < rgb.length; j++) {
+                     int alpha = (rgb[j] >> 24) & 255;
+                     if (alpha < 128) {
+                         alpha = 0;
+                     } else {
+                         alpha = 255;
+                     }
+                     rgb[j] &= 0x00ffffff;
+                     rgb[j] = (alpha << 24) | rgb[j];
+                 }
+                 cursorImage.setRGB(0, i, cursorImage.getWidth(), 1, rgb, 0,
+                         cursorImage.getWidth() * 4);
+             }
+             Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(
+                     cursorImage, new Point(0, 0), "CustomCursor");
+
+             setCursor(cursor);
+
+         } catch (Exception exp) {
+             exp.printStackTrace();
+         }
+	}
 }
