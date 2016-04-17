@@ -1,8 +1,10 @@
 package rpg;
+
+import static java.lang.Math.toIntExact;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -11,14 +13,10 @@ import java.awt.image.BufferedImage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import rpg.audio.SoundManager;
 import rpg.entity.Entity;
-import rpg.gfx.ImageLoader;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
 import rpg.json.JSONDecoder;
-
-import static java.lang.Math.toIntExact;
 
 
 @SuppressWarnings("serial")
@@ -94,9 +92,10 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
-		SoundManager manger = new SoundManager();
-		manger.playSound(2);
-		manger.fadeInSound(2);
+		//SoundManager manager = new SoundManager();
+		//manager.playSound(2);
+		
+		//manger.fadeInSound(2);
 		
 		handler = new Handler();
 		
