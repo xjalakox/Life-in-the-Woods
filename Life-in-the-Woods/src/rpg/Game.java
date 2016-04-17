@@ -141,9 +141,13 @@ public class Game extends Canvas implements Runnable {
     	player[3]=new Sprite(sheet, 27,126,32,32);
     	
     	
+    	
+    	
     	LevelChanger.ChangeMusic(1,1,false);
     	LevelChanger.ChangeLevel("res/Maps/map1.json");
 		addKeyListener(new KeyInput());
+		
+		
 	
 	}
 	
