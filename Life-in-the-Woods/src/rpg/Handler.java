@@ -54,22 +54,27 @@ public class Handler {
 		
 
 		for(int j=0;j<=21;j++){
-			JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-			System.out.println("Welt wird geladen: " + j);
-			for(int i=0;i<data.size();i++){ 
-				long test1 = (long) data.get(i);
-				if(i % 100 == 0){
-					b++;
-					a=0;
+			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
+			if(opacity==1){
+				JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
+				System.out.println("Welt wird geladen: " + j);
+				for(int i=0;i<data.size();i++){ 
+					long test1 = (long) data.get(i);
+					if(i % 100 == 0){
+						b++;
+						a=0;
+					}
+					if(test1==0){
+							
+					}else if(test1<=4000&&test1>=0){
+						addTile(new obj(a*32,b*32,32,32,Id.ground,this,(long) data.get(i)));
+					}
+					a++;
 				}
-				if(test1==0){
-						
-				}else if(test1<=4000&&test1>=0){
-					addTile(new obj(a*32,b*32,32,32,Id.ground,this,(long) data.get(i)));
-				}
-				a++;
+				b=0;
+			}else{
+				System.out.println("nicht zeichnen :)");
 			}
-			b=0;
 		}
 	}
 
