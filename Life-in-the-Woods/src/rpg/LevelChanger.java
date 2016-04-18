@@ -11,14 +11,14 @@ public class LevelChanger {
 	
 	public static void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
 		if(oldMusicID==0){
-			manager.playSound(newMusicID);
+		//	manager.playSound(newMusicID);
 		}else if(oldMusicID==newMusicID&&!running){
-			manager.playSound(newMusicID);
+		//	manager.playSound(newMusicID);
 		}else if(oldMusicID==newMusicID){
 			
 		}else{
-			manager.stopSound(oldMusicID);
-			manager.playSound(newMusicID);
+	//		manager.stopSound(oldMusicID);
+		//	manager.playSound(newMusicID);
 		}
 		if(!Game.DEBUG) manager.fadeInSound(newMusicID);
 	}
