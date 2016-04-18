@@ -157,7 +157,7 @@ public class Game extends Canvas implements Runnable {
      	sheets[11] = new SpriteSheet("/Tiles/statues.png");
      	sheets[12] = new SpriteSheet("/Tiles/trees.png");
      	
-     	JSONObject map1 = JSONDecoder.loadMapData(map1_roof);
+     	JSONObject map1 = JSONDecoder.loadMapData(map1_noroof);
 		
      	int z = 0;
      	
@@ -187,7 +187,7 @@ public class Game extends Canvas implements Runnable {
     	
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
+    	LevelChanger.ChangeLevel("res/Maps/map1_noroof.json");
 		addKeyListener(new KeyInput());
 		
 		
