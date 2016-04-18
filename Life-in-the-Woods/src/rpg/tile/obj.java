@@ -15,8 +15,7 @@ public class obj extends Tile{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x,y,w,h, null);
-		
+		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
 	}
 
 	@Override

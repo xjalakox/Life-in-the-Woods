@@ -44,7 +44,7 @@ public class Handler {
 	}
 	
 	public void createLevel(String file){
-		addEntity(new player(100,100,54,60,Id.player,this));
+		addEntity(new player(1200,1200,84,96,Id.player,this));
 
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		
@@ -67,7 +67,7 @@ public class Handler {
 					if(test1==0){
 							
 					}else if(test1<=4000&&test1>=0){
-						addTile(new obj(a*32,b*32,32,32,Id.ground,this,(long) data.get(i)));
+						addTile(new obj(a*32,b*32,32,32,Id.obj,this,(long) data.get(i)));
 					}
 					a++;
 				}

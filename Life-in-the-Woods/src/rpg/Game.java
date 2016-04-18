@@ -34,14 +34,18 @@ public class Game extends Canvas implements Runnable {
 	private static String map1_noroof = "res/Maps/map1_noroof.json";
 	private static String map1_roof = "res/Maps/map1_roof.json";
 	
-	public static SpriteSheet sheet,sheet2,sheet3;
+	public static SpriteSheet sheet;
 	public static SpriteSheet[] sheets = new SpriteSheet[20];
 	
 	public static Camera cam;
 	
+	SaveGame g = new SaveGame();
+	
 	public static long[] data = new long[10000];
 	
-	public static Sprite[] player = new Sprite[20];
+	public static Sprite[] player = new Sprite[36];
+	
+	private int fps,ups,frames;
 	
 	public static Sprite[] sprites = new Sprite[4000];
 	public static Sprite bg,ground;
@@ -135,13 +139,12 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
+		
 		texts[0] = "Hallo mein Sohn";
 		
 		handler = new Handler();
 		
-     	sheet = new SpriteSheet("/character.png");
-     	sheet2 = new SpriteSheet("/Tiles/nature.png");
-     	sheet3 = new SpriteSheet("/Tiles/rpg set.png");
+     	sheet = new SpriteSheet("/Character/character.png");
      	
      	sheets[0] = new SpriteSheet("/Tiles/nature.png");
      	sheets[1] = new SpriteSheet("/Tiles/rpg set.png");
@@ -177,17 +180,18 @@ public class Game extends Canvas implements Runnable {
 		
 		cam = new Camera();		
 
+		int p = 0;
      	
-    	player[0]=new Sprite(sheet, 27,18,32,32);
-    	player[1]=new Sprite(sheet, 27,54,32,32);
-    	player[2]=new Sprite(sheet, 27,89,32,32);
-    	player[3]=new Sprite(sheet, 27,126,32,32);
+    	for(int i=0;i<player.length/4;i++){
+    		player[i] = new Sprite(sheet, p*33+17, 526, 48,48);
+    		p++;
+    	}
     	
     	
     	
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
+    	LevelChanger.ChangeLevel("res/Maps/map1_noroof.json");
 		addKeyListener(new KeyInput());
 		
 		
@@ -200,9 +204,11 @@ public class Game extends Canvas implements Runnable {
 		init();
 		requestFocus();
 		long lastTime = System.nanoTime();
+		long timer = System.currentTimeMillis();
 		double delta = 0;
 		double ns = 1000000000.0/60.0;
 		int ticks = 0;
+		int frames = 0;
 		while(running) {
 			long now = System.nanoTime();
 			delta+=(now-lastTime)/ns; 
@@ -213,6 +219,16 @@ public class Game extends Canvas implements Runnable {
 				delta--;
 			}
 			render();
+			frames++;
+			if(System.currentTimeMillis()-timer>1000) {
+				timer+=1000;
+				fps = frames;
+				ups = ticks;
+				frames = 0;
+				ticks = 0;
+				System.out.println("FPS: " + fps);
+				System.out.println("Ticks: " + ups);
+			}
 		}
 		stop();
 	}
