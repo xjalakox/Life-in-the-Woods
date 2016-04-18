@@ -7,6 +7,9 @@ import rpg.entity.Entity;
 
 public class KeyInput implements KeyListener {
 	
+	public static boolean text;
+	public static int textid;
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		for(Entity en: Handler.entity) {
@@ -30,8 +33,10 @@ public class KeyInput implements KeyListener {
 				if(key == KeyEvent.VK_ESCAPE){
 					System.exit(0);
 				}
-				if(key == KeyEvent.VK_J){
-					LevelChanger.ChangeMusic(3,1,true);
+				if(Game.DEBUG)if(key == KeyEvent.VK_J){
+					//LevelChanger.ChangeMusic(3,1,true);
+					text = true;
+					textid = 0;
 				}
 				
 			}

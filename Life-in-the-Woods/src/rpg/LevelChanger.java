@@ -20,7 +20,6 @@ public class LevelChanger {
 			manager.stopSound(oldMusicID);
 			manager.playSound(newMusicID);
 		}
-		
-		manager.fadeInSound(newMusicID);
+		if(!Game.DEBUG) manager.fadeInSound(newMusicID);
 	}
 }

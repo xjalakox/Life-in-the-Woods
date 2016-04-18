@@ -5,6 +5,7 @@ import static java.lang.Math.toIntExact;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -21,10 +22,14 @@ import rpg.json.JSONDecoder;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
+	
+	public static String[] texts = new String[100];
 
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 270;
 	public static final int SCALE = 4;
+	
+	public static final boolean DEBUG = true;
 	
 	private static String file1 = "res/Maps/map1.json";
 	
@@ -43,7 +48,12 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
+	
+	private Color textc = new Color(138,60,34);
+	
 	public static Handler handler;
+	
+
 	
 	
 	public synchronized void start() {
@@ -72,27 +82,59 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		BufferStrategy bs = getBufferStrategy();
-		if(bs==null) {
-			createBufferStrategy(4);
-			return;
+		if(KeyInput.text){
+			String s = texts[0];
+			char[] c = s.toCharArray();
+			String test = "";
+			for(int i = 0; i < c.length; i++){
+				BufferStrategy bs = getBufferStrategy();
+				if(bs==null) {
+					createBufferStrategy(4);
+					return;
+				}
+				Graphics g = bs.getDrawGraphics();
+				Graphics2D g2d = (Graphics2D)g;
+				g.setColor(Color.WHITE);
+				g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
+				
+				g2d.translate(cam.getX(), cam.getY());
+				handler.render(g);
+				g2d.translate(-cam.getX(), -cam.getY());
+				
+				/*CODE FÜR SCROLLTEXT*/
+				test = test + c[i];
+				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
+				g.setColor(textc);
+				g.drawString(test, 800, 1000);
+				pause(100);
+				/*CODE FÜR SCROLLTEXT*/
+				
+				g.dispose();
+				bs.show();
+			}
+		}else{
+			BufferStrategy bs = getBufferStrategy();
+			if(bs==null) {
+				createBufferStrategy(4);
+				return;
+			}
+			Graphics g = bs.getDrawGraphics();
+			Graphics2D g2d = (Graphics2D)g;
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
+			
+			g2d.translate(cam.getX(), cam.getY());
+			handler.render(g);
+			g2d.translate(-cam.getX(), -cam.getY());
+			
+			g.dispose();
+			bs.show();
 		}
-		Graphics g = bs.getDrawGraphics();
-		Graphics2D g2d = (Graphics2D)g;
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
-		
-		g2d.translate(cam.getX(), cam.getY());
-		handler.render(g);
-		g2d.translate(-cam.getX(), -cam.getY());
-		
-		g.dispose();
-		bs.show();
 	}
 
 	public void init(){
 		
-		
+		texts[0] = "Hallo mein Sohn";
 		
 		handler = new Handler();
 		
@@ -148,6 +190,7 @@ public class Game extends Canvas implements Runnable {
 		addKeyListener(new KeyInput());
 		
 		
+		
 	
 	}
 	
@@ -179,6 +222,15 @@ public class Game extends Canvas implements Runnable {
 		setMaximumSize(size);
 		setMinimumSize(size);
 
+	}
+	
+	public void pause(int test){
+		try {
+			Thread.sleep(test);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static int getFrameWidth() {

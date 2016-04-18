@@ -6,12 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Scrolltext extends JFrame{
-	
+	public static String[] texts = new String[100];
 	
 	public Scrolltext(){
 	    setDefaultCloseOperation(Scrolltext.EXIT_ON_CLOSE);	    
         
 	    
+	}
+	
+	public void init(){
+		
 	}
 	
 	
@@ -21,7 +25,7 @@ public class Scrolltext extends JFrame{
     public void paint(Graphics g){
     	g.clearRect(0, 0, getWidth(), getHeight());
     	
-		String s = "Hallo, Welt ich bin schwul und heiﬂe Timo und ficke gerne Daumenknicks Lena die auch ein Mann ist";
+		String s = texts[0];
 		g.setColor(Color.BLUE);
 		char[] c = s.toCharArray();
 		String test = "";
