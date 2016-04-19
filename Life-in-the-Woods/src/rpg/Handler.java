@@ -8,7 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
-import rpg.entity.player;
 import rpg.json.JSONDecoder;
 import rpg.tile.Tile;
 import rpg.tile.obj;
@@ -44,7 +43,6 @@ public class Handler {
 	}
 	
 	public void createLevel(String file){
-		addEntity(new player(1200,1200,60,84,Id.player,this));
 
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		

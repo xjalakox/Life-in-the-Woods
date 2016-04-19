@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
+import rpg.entity.player;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
 import rpg.json.JSONDecoder;
@@ -38,6 +39,8 @@ public class Game extends Canvas implements Runnable {
 	public static SpriteSheet[] sheets = new SpriteSheet[20];
 	
 	public static Camera cam;
+	
+	private KeyInput key;
 	
 	SaveGame g = new SaveGame();
 	
@@ -78,6 +81,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	public void tick() {
 		handler.tick();
+		key.tick();
 		for(Entity e:Handler.entity){
 			if(e.getId()==Id.player) {
 				cam.tick(e);
@@ -87,7 +91,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		if(KeyInput.text){
+		if(KeyInput.debug){
 			String s = texts[0];
 			char[] c = s.toCharArray();
 			String test = "";
@@ -179,7 +183,10 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		cam = new Camera();		
-
+		key = new KeyInput();
+		addKeyListener(key);
+		handler.addEntity(new player(1200,1200,60,84,Id.player,handler, key));
+		
 		int p = 0;
      	
     	for(int i=0;i<player.length/4;i++){
@@ -206,8 +213,7 @@ public class Game extends Canvas implements Runnable {
     	
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_noroof.json");
-		addKeyListener(new KeyInput());
+    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
 		
 		
 		

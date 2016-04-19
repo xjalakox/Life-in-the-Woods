@@ -6,12 +6,15 @@ import java.awt.Graphics;
 import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
+import rpg.KeyInput;
 
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
+	private KeyInput key;
 
-	public player(int x, int y, int w, int h, Id id, Handler handler) {
+	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
+		this.key = key;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,8 +32,22 @@ public class player extends Entity {
 
 	@Override
 	public void tick() {
-		x+=velX;
-		y+=velY;
+		/*x+=velX;
+		y+=velY;*/
+		
+		//System.out.println(key.up);
+		//System.out.println(key);
+		
+		if(key.up) {
+			// AnimSprite up
+			y -= 5;
+		} else if(key.down) {
+			y += 5;
+		} else if(key.right) {
+			x += 5;
+		} else if(key.left) {
+			x -= 5;
+		}
 		if(animate){
 			frameDelay++;
 	        if(frameDelay>=5) {
