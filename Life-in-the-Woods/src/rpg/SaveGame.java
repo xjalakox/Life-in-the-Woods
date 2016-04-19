@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class SaveGame {
      
     private Scanner scan;
-    private File savegame = new File("res/Savegames/savegame1.txt");
+    private File savegame = new File("res/Savegames/savegame.txt");
      
      
      

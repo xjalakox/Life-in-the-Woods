@@ -144,7 +144,7 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-     	sheet = new SpriteSheet("/Character/character.png");
+     	sheet = new SpriteSheet("/Character/normal.png");
      	
      	sheets[0] = new SpriteSheet("/Tiles/nature.png");
      	sheets[1] = new SpriteSheet("/Tiles/rpg set.png");
@@ -183,8 +183,8 @@ public class Game extends Canvas implements Runnable {
 		int p = 0;
      	
     	for(int i=0;i<player.length/4;i++){
-    		player[i] = new Sprite(sheet, p*33+17, 526, 48,48);
-    		p++;
+    		player[i] = new Sprite(sheet, p+17, 526, 30,48);
+    		p+=64;
     	}
     	
     	

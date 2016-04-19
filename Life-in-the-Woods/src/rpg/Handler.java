@@ -44,7 +44,7 @@ public class Handler {
 	}
 	
 	public void createLevel(String file){
-		addEntity(new player(1200,1200,84,96,Id.player,this));
+		addEntity(new player(1200,1200,60,84,Id.player,this));
 
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		

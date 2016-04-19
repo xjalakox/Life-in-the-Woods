@@ -17,9 +17,9 @@ public class player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		if(facing==1)g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
-		if(facing==0)g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
-		if(facing==3)g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
+		if(facing==1)g.drawImage(Game.player[3+frame].getBufferedImage(), x,y,w,h, null);
+		if(facing==0)g.drawImage(Game.player[1+frame].getBufferedImage(), x,y,w,h, null);
+		if(facing==3)g.drawImage(Game.player[2+frame].getBufferedImage(), x,y,w,h, null);
 		if(facing==2)g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
 		
 		g.setColor(Color.BLUE);
@@ -32,16 +32,16 @@ public class player extends Entity {
 		x+=velX;
 		y+=velY;
 		
-		/*if(facing==2){
+		if(facing==2){
 			frameDelay++;
-            if(frameDelay>=20) {
+            if(frameDelay>=5) {
                 frame++;
                 if(frame>=9) {
                     frame = 0;
                 }
                 frameDelay = 0;
             }
-		}*/
+		}
 		
 	}
 
