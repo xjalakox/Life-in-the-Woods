@@ -40,6 +40,8 @@ public class player extends Entity {
 	            }
 	        frameDelay = 0;
 	        }
+		}else{
+			frame = 0;
 		}
 	}
 }
