@@ -17,18 +17,22 @@ public class KeyInput implements KeyListener {
 				if(key == KeyEvent.VK_D){
 					en.setVelX(3);
 					en.facing = 3;
+					en.animate = true;
 				}
 				if(key == KeyEvent.VK_A){
 					en.setVelX(-3);
 					en.facing = 0;
+					en.animate = true;
 				}
 				if(key == KeyEvent.VK_W){
 					en.setVelY(-3);
 					en.facing = 2;
+					en.animate = true;
 				}
 				if(key == KeyEvent.VK_S){
 					en.setVelY(3);
 					en.facing = 1;
+					en.animate = true;
 				}
 				if(key == KeyEvent.VK_ESCAPE){
 					System.exit(0);
@@ -47,10 +51,10 @@ public class KeyInput implements KeyListener {
 		int key = e.getKeyCode();
 		for(Entity en : Handler.entity) {
 			if(en.getId()==Id.player){
-				if(key == KeyEvent.VK_D) en.setVelX(0);
-				if(key == KeyEvent.VK_A) en.setVelX(0);
-				if(key == KeyEvent.VK_W) en.setVelY(0);
-				if(key == KeyEvent.VK_S) en.setVelY(0);
+				if(key == KeyEvent.VK_D) en.setVelX(0); en.animate = false;
+				if(key == KeyEvent.VK_A) en.setVelX(0); en.animate = false;
+				if(key == KeyEvent.VK_W) en.setVelY(0); en.animate = false;
+				if(key == KeyEvent.VK_S) en.setVelY(0); en.animate = false;
 				
 			}
 		}

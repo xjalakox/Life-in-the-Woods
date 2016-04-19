@@ -13,6 +13,7 @@ public abstract class Entity {
 	public Id id;
 	
 	public Handler handler;
+	public boolean animate;
 	
 	 public Entity(int x, int y, int w, int h, Id id, Handler handler){
 			this.x = x;

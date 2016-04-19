@@ -183,7 +183,22 @@ public class Game extends Canvas implements Runnable {
 		int p = 0;
      	
     	for(int i=0;i<player.length/4;i++){
-    		player[i] = new Sprite(sheet, p+17, 526, 30,48);
+    		player[i] = new Sprite(sheet, p+17, 526, 30,52);
+    		p+=64;
+    	}
+    	p=0;
+    	for(int i=9;i<player.length/4+9;i++){
+    		player[i] = new Sprite(sheet, p+17, 587, 30,52);
+    		p+=64;
+    	}
+    	p=0;
+    	for(int i=18;i<player.length/4+18;i++){
+    		player[i] = new Sprite(sheet, p+17, 650, 30,52);
+    		p+=64;
+    	}
+    	p=0;
+    	for(int i=27;i<player.length/4+27;i++){
+    		player[i] = new Sprite(sheet, p+17, 714, 30,52);
     		p+=64;
     	}
     	
