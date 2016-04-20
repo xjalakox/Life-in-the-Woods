@@ -11,6 +11,7 @@ import rpg.KeyInput;
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
+	private int test;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -20,45 +21,52 @@ public class player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		if(facing==1)g.drawImage(Game.player[18+frame].getBufferedImage(), x,y,w,h, null);
-		if(facing==0)g.drawImage(Game.player[9+frame].getBufferedImage(), x,y,w,h, null);
-		if(facing==3)g.drawImage(Game.player[27+frame].getBufferedImage(), x,y,w,h, null);
-		if(facing==2)g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
-		
+		if(!key.left&&!key.up&&!key.down&&!key.right){
+			g.drawImage(Game.player[test*9].getBufferedImage(), x, y, w, h, null);
+		}else if(!key.left&&!key.right&&!key.up){
+			g.drawImage(Game.player[18+frame].getBufferedImage(), x,y,w,h, null);
+			test = 2;
+		}else if(!key.left&&!key.right&&!key.down){
+			g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
+			test = 0;
+		}else if(!key.up&&!key.right&&!key.down){
+			g.drawImage(Game.player[9+frame].getBufferedImage(), x,y,w,h, null);
+			test = 1;
+		}else if(!key.left&&!key.up&&!key.down){
+			g.drawImage(Game.player[27+frame].getBufferedImage(), x,y,w,h, null);
+			test = 3;
+		}
 		g.setColor(Color.BLUE);
 		g.drawRect(x, y, w, h);
-		
 	}
 
 	@Override
 	public void tick() {
-		/*x+=velX;
-		y+=velY;*/
-		
-		//System.out.println(key.up);
-		//System.out.println(key);
-		
 		if(key.up) {
-			// AnimSprite up
 			y -= 5;
+			animate();
 		} else if(key.down) {
 			y += 5;
+			animate();
 		} else if(key.right) {
 			x += 5;
+			animate();
 		} else if(key.left) {
 			x -= 5;
+			animate();
 		}
-		if(animate){
-			frameDelay++;
-	        if(frameDelay>=5) {
-	            frame++;
-	            if(frame>=9) {
-	               frame = 0;
-	            }
-	        frameDelay = 0;
-	        }
-		}else{
-			frame = 0;
-		}
+	}
+	
+	public void animate(){
+		frameDelay++;
+        if(frameDelay>=5) {
+            frame++;
+            if(frame>=9) {
+               frame = 0;
+            }
+        frameDelay = 0;
+        }
+        
+		
 	}
 }

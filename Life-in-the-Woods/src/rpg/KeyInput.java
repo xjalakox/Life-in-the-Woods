@@ -5,6 +5,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import rpg.entity.Entity;
+
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
@@ -16,15 +18,13 @@ public class KeyInput implements KeyListener, FocusListener {
 	}
 	
 	public void tick() {
-		up = keyStates[KeyEvent.VK_UP] || keyStates[KeyEvent.VK_W];
-		down = keyStates[KeyEvent.VK_DOWN] || keyStates[KeyEvent.VK_S];
-		left = keyStates[KeyEvent.VK_LEFT] || keyStates[KeyEvent.VK_A];
-		right = keyStates[KeyEvent.VK_RIGHT] || keyStates[KeyEvent.VK_D];
-		debug = keyStates[KeyEvent.VK_J];
-		
-		for (int i = 0; i < keyStates.length-1; i++) {
-			if(keyStates[i]) {
-				System.out.println("KEY: " + i);
+		for(Entity en: Handler.entity) {
+			if(en.getId()==Id.player){
+				if(!down&&!left&&!right) up = keyStates[KeyEvent.VK_UP] || keyStates[KeyEvent.VK_W];
+				if(!up&&!left&&!right) down = keyStates[KeyEvent.VK_DOWN] || keyStates[KeyEvent.VK_S];
+				if(!up&&!down&&!right)left = keyStates[KeyEvent.VK_LEFT] || keyStates[KeyEvent.VK_A];
+				if(!up&&!down&&!left)right = keyStates[KeyEvent.VK_RIGHT] || keyStates[KeyEvent.VK_D];
+				debug = keyStates[KeyEvent.VK_J];
 			}
 		}
 	}
