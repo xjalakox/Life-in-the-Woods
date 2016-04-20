@@ -18,7 +18,8 @@ public class door extends Tile {
 	public void render(Graphics g) {
 		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
 		g.setColor(Color.GREEN);
-		g.drawRect(x*2, y*2, w*2, h*2);
+		//g.drawRect(x*2, y*2, w*2, h*2);
+		g.drawRect(getX()*2, getY()*2, w*2, h*2);
 	}
 
 	@Override

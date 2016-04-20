@@ -7,6 +7,7 @@ import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
+import rpg.tile.Tile;
 
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
@@ -45,19 +46,36 @@ public class player extends Entity {
 		if(key.coordinate){
 			System.out.println("X: " + getX() + "Y: " + getY());
 		}
-		if(key.up) {
-			if(key.running)y -=6; else y-=3;
-			animate();
-		} else if(key.down) {
-			if(key.running)y +=6; else y+=3;
-			animate();
-		} else if(key.right) {
-			if(key.running)x +=6; else x+=3;
-			animate();
-		} else if(key.left) {
-			if(key.running)x -=6; else x-=3;
-			animate();
+		if(!collision()) {
+			if(key.up) {
+				if(key.running)y -=6; else y-=3;
+				animate();
+			} else if(key.down) {
+				if(key.running)y +=6; else y+=3;
+				animate();
+			} else if(key.right) {
+				if(key.running)x +=6; else x+=3;
+				animate();
+			} else if(key.left) {
+				if(key.running)x -=6; else x-=3;
+				animate();
+			}
 		}
+	}
+	
+	private boolean collision() {
+		for(Tile t : Handler.tile){
+		//	if(!t.isSolid()) break;
+			if(t.getId()==Id.door){
+				System.out.println(t.getX());
+				System.out.println(t.getY());
+			}
+			if(t.getX() == getX()&&t.getY() == getY()) {
+				System.out.println("true");
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void animate(){
