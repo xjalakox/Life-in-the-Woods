@@ -8,8 +8,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+
+import javax.swing.ImageIcon;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -61,7 +65,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public static Handler handler;
 	
-
+	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
+	public ImageObserver observer;
 	
 	
 	public synchronized void start() {
@@ -114,6 +119,7 @@ public class Game extends Canvas implements Runnable {
 				test = test + c[i];
 				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
 				g.setColor(textc);
+				g.drawImage(scrolltext_bg, 700, 900, observer);
 				g.drawString(test, 800, 1000);
 				pause(100);
 				/*CODE FÜR SCROLLTEXT*/
