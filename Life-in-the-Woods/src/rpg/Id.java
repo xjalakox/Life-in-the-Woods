@@ -1,5 +1,5 @@
 package rpg;
 
 public enum Id {
-	player, obj;
+	player, obj, door;
 }

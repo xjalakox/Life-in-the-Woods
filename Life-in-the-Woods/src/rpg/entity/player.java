@@ -42,6 +42,9 @@ public class player extends Entity {
 
 	@Override
 	public void tick() {
+		if(key.coordinate){
+			System.out.println("X: " + getX() + "Y: " + getY());
+		}
 		if(key.up) {
 			if(key.running)y -=6; else y-=3;
 			animate();
@@ -62,14 +65,14 @@ public class player extends Entity {
         if(frameDelay>=4&&key.running){
             frame++;
             if(frame>=9) {
-               frame = 0;
+               frame = 1;
             }
         frameDelay = 0;
         }else
         if(frameDelay>=8){
         	 frame++;
              if(frame>=9) {
-                frame = 0;
+                frame = 1;
              }
          frameDelay = 0;
         }	

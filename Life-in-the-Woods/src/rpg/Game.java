@@ -10,7 +10,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
@@ -52,11 +51,10 @@ public class Game extends Canvas implements Runnable {
 	
 	public static Sprite[] player = new Sprite[36];
 	
-	private int fps,ups,frames;
+	private int fps,ups;
 	
 	public static Sprite[] sprites = new Sprite[4000];
 	public static Sprite bg,ground;
-	private BufferedImage background;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -196,7 +194,7 @@ public class Game extends Canvas implements Runnable {
 		int p = 0;
      	
     	for(int i=0;i<player.length/4;i++){
-    		player[i] = new Sprite(sheet, p+17, 526, 30,52);
+    		player[i] = new Sprite(sheet, p+17, 523, 30,52);
     		p+=64;
     	}
     	p=0;
@@ -219,7 +217,7 @@ public class Game extends Canvas implements Runnable {
     	
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
+    	LevelChanger.ChangeLevel("res/Maps/map1_noroof.json");
 		
 		
 		

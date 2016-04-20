@@ -1,35 +1,22 @@
 package rpg.menu;
 
-import java.awt.BorderLayout;
-import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import rpg.Game;
-import rpg.KeyInput;
 import rpg.Main;
 
 
 
 public class Menu extends JFrame {
 	private static final long serialVersionUID = 1L;
-
-	private JPanel contentPane;
 	
 	private JPanel mainpanel;
 	private JLabel mainlabel;

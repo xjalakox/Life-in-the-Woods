@@ -5,12 +5,10 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import rpg.entity.Entity;
-
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public boolean up, left, down, right,running,escape;
+	public boolean up, left, down, right,running,escape,coordinate;
 	public static boolean debug;
 	
 	public KeyInput() {
@@ -24,7 +22,7 @@ public class KeyInput implements KeyListener, FocusListener {
 		if(!up&&!down&&!left)right = keyStates[KeyEvent.VK_RIGHT] || keyStates[KeyEvent.VK_D];
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
-		debug = keyStates[KeyEvent.VK_J];
+		coordinate = keyStates[KeyEvent.VK_0];
 		if(escape) System.exit(0);
 	}
 	

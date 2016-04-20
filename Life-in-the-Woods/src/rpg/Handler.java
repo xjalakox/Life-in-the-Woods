@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import rpg.entity.Entity;
 import rpg.json.JSONDecoder;
 import rpg.tile.Tile;
+import rpg.tile.door;
 import rpg.tile.obj;
 
 public class Handler {
@@ -64,8 +65,11 @@ public class Handler {
 					}
 					if(test1==0){
 							
+					}else if(test1>=2297&&test1<=2488){
+						addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
+						System.out.println("door");
 					}else if(test1<=4000&&test1>=0){
-						addTile(new obj(a*32,b*32,32,32,Id.obj,this,(long) data.get(i)));
+						addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
 					}
 					a++;
 				}
