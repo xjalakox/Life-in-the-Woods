@@ -6,11 +6,19 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 
@@ -59,12 +67,14 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	
-	private Color textc = new Color(138,60,34);
+	private Color textcolor = new Color(138,60,34);
 	
 	public static Handler handler;
 	
 	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 	public ImageObserver observer;
+	
+	public String PlayerName = "Jannik";	
 	
 	
 	public synchronized void start() {
@@ -104,6 +114,7 @@ public class Game extends Canvas implements Runnable {
 					createBufferStrategy(4);
 					return;
 				}
+				//
 				Graphics g = bs.getDrawGraphics();
 				Graphics2D g2d = (Graphics2D)g;
 				g.setColor(Color.WHITE);
@@ -114,10 +125,21 @@ public class Game extends Canvas implements Runnable {
 				g2d.translate(-cam.getX(), -cam.getY());
 				
 				/*CODE FÜR SCROLLTEXT*/
-				test = test + c[i];
-				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
-				g.setColor(textc);
+				test = test + c[i];				
+				InputStream is = Game.class.getClassLoader().getResourceAsStream("Scrolltext/harrington.ttf");
+				g.setColor(Color.WHITE);
 				g.drawImage(scrolltext_bg, 700, 900, observer);
+				Font f = null;
+				try {
+					f = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(Font.TRUETYPE_FONT, 30);
+				} catch (FontFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				g.setFont(f);
 				g.drawString(test, 800, 1000);
 				pause(100);
 				/*CODE FÜR SCROLLTEXT*/
@@ -148,7 +170,7 @@ public class Game extends Canvas implements Runnable {
 	public void init(){
 		
 		
-		texts[0] = "Hallo mein Sohn";
+		texts[0] = "Das ist " + PlayerName + ". Er ist in die Vagina von Frau Mann gekrochen ";
 		
 		handler = new Handler();
 		
@@ -274,6 +296,7 @@ public class Game extends Canvas implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public static int getFrameWidth() {
 		return WIDTH*SCALE;
