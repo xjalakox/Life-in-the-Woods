@@ -1,6 +1,6 @@
 package rpg;
 
-import static java.lang.Math.toIntExact;
+
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -26,6 +26,8 @@ import rpg.json.JSONDecoder;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
+	
+	private static final java.lang.String FALSE = "false";
 	
 	public static String[] texts = new String[100];
 
@@ -147,7 +149,6 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
-		
 		texts[0] = "Hallo mein Sohn";
 		
 		handler = new Handler();
@@ -180,7 +181,7 @@ public class Game extends Canvas implements Runnable {
 			System.out.println("Spritesheet wird ausgelesen: " + a);
 			for(int b=0;b<height;b++){
 				for(int c=0;c<width;c++){
-					sprites[z+1] = new Sprite(sheets[a], toIntExact(c*32),toIntExact(b*32),32,32);
+					sprites[z+1] = new Sprite(sheets[a],((int)(c*32)),((int)(b*32)),32,32);
 					z++;
 				}
 			}

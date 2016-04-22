@@ -1,6 +1,7 @@
 package rpg.tile;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import rpg.Handler;
 import rpg.Id;
@@ -55,5 +56,26 @@ public abstract class Tile {
 
 	public Id getId() {
 		return id;
+	}
+	
+	public int getW(){
+		return w;
+	}
+	
+	public void setW(int w){
+		this.w = w;
+	}
+	
+	public int getH(){
+		return h;
+	}
+	
+	public void setH(int h){
+		this.h = h;
+	}
+
+	
+	public Rectangle getBounds(){
+		return new Rectangle(getX(),getY(),getW(),getH());
 	}
 }

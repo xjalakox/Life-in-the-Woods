@@ -2,6 +2,7 @@ package rpg.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import rpg.Game;
 import rpg.Handler;
@@ -38,7 +39,7 @@ public class player extends Entity {
 			anim = 3;
 		}
 		g.setColor(Color.BLUE);
-		g.drawRect(x, y, w, h);
+		g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
 	}
 
 	@Override
@@ -65,14 +66,10 @@ public class player extends Entity {
 	
 	private boolean collision() {
 		for(Tile t : Handler.tile){
-		//	if(!t.isSolid()) break;
 			if(t.getId()==Id.door){
-				System.out.println(t.getX());
-				System.out.println(t.getY());
-			}
-			if(t.getX() == getX()&&t.getY() == getY()) {
-				System.out.println("true");
-				return true;
+				if(getBounds().intersects(t.getBounds())){
+					key.up = false;
+				}
 			}
 		}
 		return false;

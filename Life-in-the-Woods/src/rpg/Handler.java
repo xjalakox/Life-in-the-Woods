@@ -67,7 +67,7 @@ public class Handler {
 							
 					}else if(ids>=2297&&ids<=2488){
 						addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
-						System.out.println("door");
+					//	System.out.println("door");
 					}else if(ids<=4000&&ids>=0){
 						addTile(new obj(a*32,b*32,32,32,Id.obj,this,false,(long) data.get(i)));
 					}

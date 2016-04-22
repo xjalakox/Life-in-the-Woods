@@ -12,7 +12,7 @@ public class KeyInput implements KeyListener, FocusListener {
 	public static boolean debug;
 	
 	public KeyInput() {
-		keyStates = new boolean[120];
+		keyStates = new boolean[65536];
 	}
 	
 	public void tick() {

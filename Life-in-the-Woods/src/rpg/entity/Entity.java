@@ -1,6 +1,7 @@
 package rpg.entity;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import rpg.Handler;
 import rpg.Id;
@@ -89,5 +90,10 @@ public abstract class Entity {
 	
 	public void setId(Id id) {
 		this.id = id;
+	}
+	
+	
+	public Rectangle getBounds(){
+		return new Rectangle(getX(),getY()+68,getW(),getH()-68);
 	}
 }

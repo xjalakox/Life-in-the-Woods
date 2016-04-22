@@ -2,6 +2,7 @@ package rpg.tile;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import rpg.Game;
 import rpg.Handler;
@@ -18,14 +19,18 @@ public class door extends Tile {
 	public void render(Graphics g) {
 		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
 		g.setColor(Color.GREEN);
-		//g.drawRect(x*2, y*2, w*2, h*2);
-		g.drawRect(getX()*2, getY()*2, w*2, h*2);
+		g.drawRect(getX()*2, getY()*2+50, getW()*2, getH()*2-50);
 	}
 
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	
+	public Rectangle getBounds(){
+		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
 	}
 
 }
