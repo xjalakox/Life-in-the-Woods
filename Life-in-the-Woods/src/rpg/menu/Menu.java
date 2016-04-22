@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import rpg.Loadingscreen;
 import rpg.Main;
+import rpg.menu.CustomCursor;
 
 
 
@@ -24,7 +25,7 @@ public class Menu extends JFrame {
 	private JLabel start;
 	private JLabel close;
 
-	public static void main(String[] args) {
+	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +59,7 @@ public class Menu extends JFrame {
 		super.add(mainpanel);
 		
 		final Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
-		final 	Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
+		final Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
 		final Image image3 = new ImageIcon(this.getClass().getResource("/Menu/close_hover.png")).getImage();
 		final Image image4 = new ImageIcon(this.getClass().getResource("/Menu/start_pressed.png")).getImage();
 		final Image image5 = new ImageIcon(this.getClass().getResource("/Menu/start_hover.png")).getImage();
@@ -89,7 +90,7 @@ public class Menu extends JFrame {
 					public void mousePressed(MouseEvent evt) {
 						start.setIcon(new ImageIcon(image4));
 						Close();
-						Loadingscreen.main(null);
+						Loadingscreen.start();
 					}
 					public void mouseReleased(MouseEvent evt) {
 						if (sgHover == true) {

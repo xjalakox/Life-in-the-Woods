@@ -20,6 +20,7 @@ public class KeyInput implements KeyListener, FocusListener {
 		if(!up&&!left&&!right) down = keyStates[KeyEvent.VK_DOWN] || keyStates[KeyEvent.VK_S];
 		if(!up&&!down&&!right)left = keyStates[KeyEvent.VK_LEFT] || keyStates[KeyEvent.VK_A];
 		if(!up&&!down&&!left)right = keyStates[KeyEvent.VK_RIGHT] || keyStates[KeyEvent.VK_D];
+		debug = keyStates[KeyEvent.VK_J];
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		coordinate = keyStates[KeyEvent.VK_0];

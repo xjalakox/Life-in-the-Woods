@@ -20,13 +20,24 @@ public class Loadingscreen extends JFrame {
 	
 	private JPanel mainpanel;
 	private JLabel mainlabel;
-	private JLabel start;
-	private JLabel close;
 
-	public static void main(String[] args) {
+	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Game game = new Game();
+					JFrame gameframe = new JFrame("RPG");
+					gameframe.setExtendedState(Frame.MAXIMIZED_BOTH);
+					gameframe.setUndecorated(true);
+					gameframe.add(game);
+					gameframe.pack();
+					gameframe.setResizable(false);
+					gameframe.setLocationRelativeTo(null);
+					gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					gameframe.setVisible(true);
+
+					game.start();
+					
 					Loadingscreen frame = new Loadingscreen();
 					frame.setVisible(true);
 					
@@ -59,12 +70,6 @@ public class Loadingscreen extends JFrame {
 		super.add(mainpanel);
 		
 		Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
-		Image image2 = new ImageIcon(this.getClass().getResource("/Menu/start_default.png")).getImage();
-		Image image3 = new ImageIcon(this.getClass().getResource("/Menu/close_hover.png")).getImage();
-		Image image4 = new ImageIcon(this.getClass().getResource("/Menu/start_pressed.png")).getImage();
-		Image image5 = new ImageIcon(this.getClass().getResource("/Menu/start_hover.png")).getImage();
-		Image image6 = new ImageIcon(this.getClass().getResource("/Menu/close_pressed.png")).getImage();
-		Image image7 = new ImageIcon(this.getClass().getResource("/Menu/close_default.png")).getImage();
 		
 		
 		mainlabel = new JLabel(new ImageIcon(image1));

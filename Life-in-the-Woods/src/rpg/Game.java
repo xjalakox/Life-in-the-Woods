@@ -149,7 +149,9 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
-		texts[0] = "Hallo mein Sohn";
+		SaveGame game = new SaveGame();
+		
+		texts[0] = "Hallo " + game.getName().toString() + " wie geht es dir?";
 		
 		handler = new Handler();
 		

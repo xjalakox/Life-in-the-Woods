@@ -10,9 +10,8 @@ public class SaveGame {
     private Scanner scan;
     private File savegame = new File("res/Savegames/savegame.txt");
      
-     
-     
     private String name;
+    private String name2;
      
      
      
@@ -35,6 +34,7 @@ public class SaveGame {
         if(scan.hasNext()){
             try{
                 this.name = scan.next();
+                this.name2 = scan.next();
             } catch (Exception e) {
                 //setToDefault();
             }
@@ -47,7 +47,7 @@ public class SaveGame {
         try {
             Formatter formatter = new Formatter(savegame);
             formatter.format
-            ("%s ", "Name: " + name);
+            ("%s %n%s" ,"Name: " + name, "Name 2: " + name);
             formatter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class SaveGame {
      
     public void setToDefault() {
          
-        this.name = "günther";
+        this.name = "test";
                                  
         write();
     }
