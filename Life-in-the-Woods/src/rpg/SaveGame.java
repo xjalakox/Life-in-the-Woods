@@ -47,7 +47,7 @@ public class SaveGame {
         try {
             Formatter formatter = new Formatter(savegame);
             formatter.format
-            ("%s %n%s" ,"Name: " + name, "Name 2: " + name);
+            ("%s %n%s" ,name , name);
             formatter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -62,7 +62,7 @@ public class SaveGame {
     }
  
     public String getName() {
-        return name;
+        return this.name;
     }
  
     public void setName(String name) {

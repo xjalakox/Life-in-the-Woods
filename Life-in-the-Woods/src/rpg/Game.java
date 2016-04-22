@@ -150,6 +150,7 @@ public class Game extends Canvas implements Runnable {
 	public void init(){
 		
 		SaveGame game = new SaveGame();
+		game.setName("Leon der Suckhoff");
 		
 		texts[0] = "Hallo " + game.getName().toString() + " wie geht es dir?";
 		
@@ -220,7 +221,7 @@ public class Game extends Canvas implements Runnable {
     	
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_noroof.json");
+    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
 		
 		
 		

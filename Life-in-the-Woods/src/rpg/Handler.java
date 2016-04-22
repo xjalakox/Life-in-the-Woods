@@ -47,36 +47,38 @@ public class Handler {
 
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		
+		
 		int a = 0;
 		int b = 0;
-		
-		
 
 		for(int j=0;j<=21;j++){
 			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
 			if(opacity==1){
 				JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
 				System.out.println("Welt wird geladen: " + j);
-				for(int i=0;i<data.size();i++){ 
+				for(int i=0;i<data.size();i++){
 					long ids = (long) data.get(i);
 					if(i % 100 == 0){
 						b++;
 						a=0;
 					}
+					
 					if(ids==0){
-							
+						
+					}else if(ids>=320&&ids<=330||ids==354){
+						addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
+					}else if(ids==193){
+						addTile(new obj(a*32,b*32,32,32,Id.ground,this,true,(long) data.get(i)));
 					}else if(ids>=2297&&ids<=2488){
 						addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
-					//	System.out.println("door");
 					}else if(ids<=4000&&ids>=0){
-						addTile(new obj(a*32,b*32,32,32,Id.obj,this,false,(long) data.get(i)));
+						addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
 					}
 					a++;
 				}
 				b=0;
-			}else{
-				System.out.println("nicht zeichnen :)");
 			}
+			
 		}
 	}	
 }
