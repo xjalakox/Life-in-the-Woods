@@ -20,11 +20,11 @@ public class obj extends Tile{
 		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
 		g.setColor(Color.red);
 		g.drawRect(getX()*2, getY()*2+64, getW()*2, getH()*2-54);
-		g.setColor(Color.green);
+		//g.setColor(Color.green);
 		g.drawRect(getX()*2+64, getY()*2, getW()*2-54, getH()*2);
-		g.setColor(Color.blue);
+		//g.setColor(Color.blue);
 		g.drawRect(getX()*2-64, getY()*2, getW()*2-54, getH()*2);
-		g.setColor(Color.YELLOW);
+		//g.setColor(Color.YELLOW);
 		g.drawRect(getX()*2, getY()*2-64, getW()*2, getH()*2-54);
 	}
 
@@ -37,4 +37,22 @@ public class obj extends Tile{
 	public Rectangle getBounds(){
 		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
 	}
+	
+	public Rectangle getBoundsRight(){
+		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
+	}
+	
+	public Rectangle getBoundsLeft(){
+		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
+	}
+	
+	public Rectangle getBoundsTop(){
+		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
+	}
+
+	public Rectangle getBoundsBottom(){
+		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
+	}
+
+
 }

@@ -73,9 +73,6 @@ public abstract class Tile {
 	public void setH(int h){
 		this.h = h;
 	}
-
 	
-	public Rectangle getBounds(){
-		return new Rectangle(getX(),getY(),getW(),getH());
-	}
+	public abstract Rectangle getBounds();
 }

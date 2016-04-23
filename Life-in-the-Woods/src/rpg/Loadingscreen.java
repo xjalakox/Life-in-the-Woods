@@ -17,6 +17,7 @@ import rpg.Main;
 
 public class Loadingscreen extends JFrame {
 	private static final long serialVersionUID = 1L;
+	public static Loadingscreen frame = new Loadingscreen();
 	
 	private JPanel mainpanel;
 	private JLabel mainlabel;
@@ -38,7 +39,6 @@ public class Loadingscreen extends JFrame {
 
 					game.start();
 					
-					Loadingscreen frame = new Loadingscreen();
 					frame.setVisible(true);
 					
 					
