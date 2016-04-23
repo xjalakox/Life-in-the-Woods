@@ -227,8 +227,6 @@ public class Game extends Canvas implements Runnable {
     	
     	LevelChanger.ChangeMusic(1,1,false);
     	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
-    	
-    	Loadingscreen.frame.Close();
 		
 		
 		

@@ -80,5 +80,9 @@ public class Handler {
 			}
 			
 		}
+		boolean visible = Loadingscreen.frame.isVisible();
+		if(visible=true){
+			Loadingscreen.frame.Close();
+		}
 	}	
 }
