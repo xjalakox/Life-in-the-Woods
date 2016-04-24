@@ -24,7 +24,7 @@ public class door extends Tile {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		
 
 	}
 	
@@ -32,29 +32,21 @@ public class door extends Tile {
 	public Rectangle getBounds(){
 		return new Rectangle(getX()*2,getY()*2,getW()*2,getH()*2);
 	}
-
-	@Override
-	public Rectangle getBoundsTop() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Rectangle getBoundsRight(){
+		return new Rectangle(getX()*2+64, getY()*2, getW()*2-54, getH()*2);
+	}
+	
+	public Rectangle getBoundsLeft(){
+		return new Rectangle(getX()*2-10, getY()*2, getW()*2-54, getH()*2);
+	}
+	
+	public Rectangle getBoundsTop(){
+		return new Rectangle(getX()*2, getY()*2-10, getW()*2, getH()*2-54);
 	}
 
-	@Override
-	public Rectangle getBoundsBottom() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle getBoundsLeft() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle getBoundsRight() {
-		// TODO Auto-generated method stub
-		return null;
+	public Rectangle getBoundsBottom(){
+		return new Rectangle(getX()*2, getY()*2+64, getW()*2, getH()*2-54);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
+import rpg.entity.player;
 import rpg.json.JSONDecoder;
 import rpg.tile.Backg;
 import rpg.tile.BackgroundTile;
@@ -20,15 +21,24 @@ public class Handler {
 	public static List<Tile> tile = new ArrayList<Tile>();
 	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	
+	public static SaveGame g = new SaveGame();
+	
+	public static player player;
 	public void render(Graphics g){
 		for(Tile ti:tile){
-			ti.render(g);
+			if(Game.getVisisbleArea()!=null&&ti.getBounds().intersects(Game.getVisisbleArea())){
+                ti.render(g);
+            }
 		}
 		for(Entity en:entity){
-			en.render(g);
+			if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
+                en.render(g);
+            }
 		}
 		for(BackgroundTile bti:btile){
-			bti.render(g);
+			if(Game.getVisisbleArea()!=null&&bti.getBounds().intersects(Game.getVisisbleArea())){
+                bti.render(g);
+            }
 		}
 	}
 	
@@ -37,7 +47,9 @@ public class Handler {
 			ti.tick();
 		}
 		for(Entity en:entity){
-			en.tick();
+			if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
+                en.tick();
+            }
 		}
 		for(BackgroundTile bti:btile){
 			bti.tick();
@@ -56,7 +68,18 @@ public class Handler {
 		btile.add(bti);
 	}
 	
+	public void clearLevel() {
+        entity.clear();
+        tile.clear();
+        btile.clear();
+        System.out.println("cleared");
+    }
+	
 	public void createLevel(String file){
+
+		
+
+		addEntity(new player(g.getX(),g.getY(),60,84,Id.player,this, Game.key));
 
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		

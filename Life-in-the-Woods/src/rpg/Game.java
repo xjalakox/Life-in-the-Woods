@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.awt.image.ImageObserver;
 
@@ -27,8 +28,6 @@ import rpg.json.JSONDecoder;
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 	
-	private static final java.lang.String FALSE = "false";
-	
 	public static String[] texts = new String[100];
 
 	public static final int WIDTH = 480;
@@ -37,17 +36,15 @@ public class Game extends Canvas implements Runnable {
 	
 	public static final boolean DEBUG = true;
 	
-	private static String map1_noroof = "res/Maps/map1_noroof.json";
-	private static String map1_roof = "res/Maps/map1_roof.json";
+	public static String map1_noroof = "res/Maps/map1_noroof.json";
+	public static String map1_roof = "res/Maps/map1_roof.json";
 	
 	public static SpriteSheet sheet;
 	public static SpriteSheet[] sheets = new SpriteSheet[20];
 	
 	public static Camera cam;
 	
-	private KeyInput key;
-	
-	SaveGame g = new SaveGame();
+	public static KeyInput key;
 	
 	public static long[] data = new long[10000];
 	
@@ -149,12 +146,9 @@ public class Game extends Canvas implements Runnable {
 
 	public void init(){
 		
-		SaveGame game = new SaveGame();
-		game.setName("Leon der Suckhoff");
-		
-		texts[0] = "Hallo " + game.getName().toString() + " wie geht es dir?";
-		
 		handler = new Handler();
+		
+		texts[0] = "Hallo " + Handler.g.getName() + " wie geht es dir?";
 		
      	sheet = new SpriteSheet("/Character/normal.png");
      	
@@ -193,7 +187,6 @@ public class Game extends Canvas implements Runnable {
 		cam = new Camera();		
 		key = new KeyInput();
 		addKeyListener(key);
-		handler.addEntity(new player(2000,2000,60,84,Id.player,handler, key));
 		
 		int p = 0;
      	
@@ -247,6 +240,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 			if(System.currentTimeMillis()-timer>1000) {
+				
 				timer+=1000;
 				fps = frames;
 				ups = ticks;
@@ -283,6 +277,17 @@ public class Game extends Canvas implements Runnable {
 	public static int getFrameHeight() {
 		return HEIGHT*SCALE;
 	}
+	
+	public static Rectangle getVisisbleArea() {
+        for(int i=0;i<handler.entity.size();i++) {
+            Entity e = handler.entity.get(i);   
+            if(e.getId()==Id.player)
+            {
+                return new Rectangle(e.getX()-960, e.getY()-540, 1920, 1080);
+            }
+        }
+        return null;
+    }
 	
 	
 

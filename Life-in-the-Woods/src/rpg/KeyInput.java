@@ -5,6 +5,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import rpg.entity.Entity;
+
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
@@ -24,7 +26,15 @@ public class KeyInput implements KeyListener, FocusListener {
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		coordinate = keyStates[KeyEvent.VK_0];
-		if(escape) System.exit(0);
+		if(escape){
+			for(Entity en:Game.handler.entity) {
+				if(en.getId()==Id.player){
+					Handler.g.setX(en.getX());
+					Handler.g.setY(en.getY());
+				}
+			}
+			System.exit(0);
+		}
 	}
 	
 	@Override

@@ -28,14 +28,6 @@ public abstract class Entity {
 	public abstract void render(Graphics g);
 	public abstract void tick();
 	
-	public int getFacing() {
-		return facing;
-	}
-	
-	public void setFacing(int facing) {
-		this.facing = facing;
-	}
-	
 	public int getX() {
 		return x;
 	}

@@ -12,6 +12,8 @@ public class SaveGame {
      
     private String name;
     private String name2;
+    
+    private int x, y;
      
      
      
@@ -34,7 +36,8 @@ public class SaveGame {
         if(scan.hasNext()){
             try{
                 this.name = scan.next();
-                this.name2 = scan.next();
+                this.x = scan.nextInt();
+                this.y = scan.nextInt();
             } catch (Exception e) {
                 //setToDefault();
             }
@@ -47,7 +50,7 @@ public class SaveGame {
         try {
             Formatter formatter = new Formatter(savegame);
             formatter.format
-            ("%s %n%s" ,name , name);
+            ("%s %n%s %n%s" ,name,x,y);
             formatter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -69,5 +72,23 @@ public class SaveGame {
         this.name = name;
         write();
     }
+
+	public int getX() {
+		return this.x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+		write();
+	}
+
+	public int getY() {
+		return this.y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+		write();
+	}
      
 }

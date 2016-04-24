@@ -39,7 +39,8 @@ public class player extends Entity {
 			anim = 3;
 		}
 		g.setColor(Color.BLUE);
-		g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
+		//g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
+		g.drawRect(getX()-960, getY()-540, 1920, 1080);
 	}
 
 	@Override
@@ -63,10 +64,15 @@ public class player extends Entity {
 			}
 		}
 	}
-	
+
 	private boolean collision() {
 		for(Tile t : Handler.tile){
-			if(t.getId()==Id.obj){
+			if(t.getId()==Id.door){
+				if(getBounds().intersects(t.getBounds())){
+					rpg.Game.handler.clearLevel();
+					rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
+				}
+			}else if(t.getId()==Id.obj){
 				if(getBounds().intersects(t.getBoundsBottom())){
 					key.up = false;
 				}
