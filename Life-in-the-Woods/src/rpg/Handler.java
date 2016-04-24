@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
 import rpg.json.JSONDecoder;
+import rpg.tile.Backg;
+import rpg.tile.BackgroundTile;
 import rpg.tile.Tile;
 import rpg.tile.door;
 import rpg.tile.obj;
@@ -16,6 +18,7 @@ import rpg.tile.obj;
 public class Handler {
 	public static List<Entity> entity = new ArrayList<Entity>();
 	public static List<Tile> tile = new ArrayList<Tile>();
+	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	
 	public void render(Graphics g){
 		for(Tile ti:tile){
@@ -23,6 +26,9 @@ public class Handler {
 		}
 		for(Entity en:entity){
 			en.render(g);
+		}
+		for(BackgroundTile bti:btile){
+			bti.render(g);
 		}
 	}
 	
@@ -33,6 +39,9 @@ public class Handler {
 		for(Entity en:entity){
 			en.tick();
 		}
+		for(BackgroundTile bti:btile){
+			bti.tick();
+		}
 	}
 	
 	public void addEntity(Entity en){
@@ -41,6 +50,10 @@ public class Handler {
 	
 	public void addTile(Tile ti) {
 		tile.add(ti);
+	}
+	
+	public void addBTile(BackgroundTile bti){
+		btile.add(bti);
 	}
 	
 	public void createLevel(String file){
@@ -65,10 +78,13 @@ public class Handler {
 					
 					if(ids==0){
 						
-					}else if(ids>=320&&ids<=330||ids==354){
+					}else if(ids==1661||ids==1693){
+						addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
+						//addTile(new obj(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
+					}else if(ids>=320&&ids<=360){
 						addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
 					}else if(ids==193){
-						addTile(new obj(a*32,b*32,32,32,Id.ground,this,true,(long) data.get(i)));
+						addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
 					}else if(ids>=2297&&ids<=2488){
 						addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
 					}else if(ids<=4000&&ids>=0){

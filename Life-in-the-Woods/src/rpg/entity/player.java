@@ -66,9 +66,18 @@ public class player extends Entity {
 	
 	private boolean collision() {
 		for(Tile t : Handler.tile){
-			if(t.getId()==Id.door||t.getId()==Id.obj){
-				if(getBounds().intersects(t.getBounds())){
+			if(t.getId()==Id.obj){
+				if(getBounds().intersects(t.getBoundsBottom())){
 					key.up = false;
+				}
+				if(getBounds().intersects(t.getBoundsRight())){
+					key.left = false;
+				}
+				if(getBounds().intersects(t.getBoundsLeft())){
+					key.right = false;
+				}
+				if(getBounds().intersects(t.getBoundsTop())){
+					key.down = false;
 				}
 			}
 		}

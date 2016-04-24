@@ -94,6 +94,6 @@ public abstract class Entity {
 	
 	
 	public Rectangle getBounds(){
-		return new Rectangle(getX(),getY()+68,getW(),getH()-68);
+		return new Rectangle(getX()+7, getY()+65, getW()-14, getH()-65);
 	}
 }

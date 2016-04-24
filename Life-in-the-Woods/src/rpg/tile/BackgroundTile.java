@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import rpg.Handler;
 import rpg.Id;
 
-public abstract class Tile {
+public abstract class BackgroundTile {
 	public int facing;
 	public int x,y,w,h;
 	public int velX,velY;
@@ -19,7 +19,7 @@ public abstract class Tile {
 	
 	public Handler handler;
 	
-	 Tile(int x, int y, int w, int h, Id id, Handler handler,boolean solid,long arrayzahl){
+	BackgroundTile(int x, int y, int w, int h, Id id, Handler handler,boolean solid,long arrayzahl){
 			this.x = x;
 			this.y = y;
 			this.w = w;

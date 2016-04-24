@@ -193,7 +193,7 @@ public class Game extends Canvas implements Runnable {
 		cam = new Camera();		
 		key = new KeyInput();
 		addKeyListener(key);
-		handler.addEntity(new player(0,0,60,84,Id.player,handler, key));
+		handler.addEntity(new player(2000,2000,60,84,Id.player,handler, key));
 		
 		int p = 0;
      	
@@ -216,14 +216,6 @@ public class Game extends Canvas implements Runnable {
     		player[i] = new Sprite(sheet, p+17, 714, 30,52);
     		p+=64;
     	}
-    	
-    	
-    	try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	
     	LevelChanger.ChangeMusic(1,1,false);
     	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");

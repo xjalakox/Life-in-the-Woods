@@ -8,9 +8,9 @@ import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 
-public class obj extends Tile{
+public class Backg extends BackgroundTile{
 
-	public obj(int x, int y, int w, int h, Id id, Handler handler, boolean solid, long arrayzahl) {
+	public Backg(int x, int y, int w, int h, Id id, Handler handler, boolean solid, long arrayzahl) {
 		super(x, y, w, h, id, handler,solid, arrayzahl);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,14 +18,6 @@ public class obj extends Tile{
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
-		g.setColor(Color.red);
-		//g.drawRect(getX()*2, getY()*2+64, getW()*2, getH()*2-54);
-		g.setColor(Color.green);
-	//	g.drawRect(getX()*2+64, getY()*2, getW()*2-54, getH()*2);
-		g.setColor(Color.blue);
-		//g.drawRect(getX()*2-64, getY()*2, getW()*2-54, getH()*2);
-		g.setColor(Color.YELLOW);
-		//g.drawRect(getX()*2, getY()*2-64, getW()*2, getH()*2-54);
 	}
 
 	@Override
