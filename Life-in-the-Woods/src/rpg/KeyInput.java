@@ -11,6 +11,7 @@ public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
 	public boolean up, left, down, right,running,escape,coordinate;
+	public static boolean inventory;
 	public static boolean debug;
 	
 	public KeyInput() {
@@ -23,6 +24,7 @@ public class KeyInput implements KeyListener, FocusListener {
 		if(!up&&!down&&!right)left = keyStates[KeyEvent.VK_LEFT] || keyStates[KeyEvent.VK_A];
 		if(!up&&!down&&!left)right = keyStates[KeyEvent.VK_RIGHT] || keyStates[KeyEvent.VK_D];
 		debug = keyStates[KeyEvent.VK_J];
+		inventory = keyStates[KeyEvent.VK_E];
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		coordinate = keyStates[KeyEvent.VK_0];
