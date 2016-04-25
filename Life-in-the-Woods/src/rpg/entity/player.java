@@ -74,11 +74,11 @@ public class player extends Entity {
 						if(en.getId()==Id.player){
 							en.setY(en.getY()-200);
 							System.out.println("NEIN HAST DU NICHT");
-						
-							rpg.Game.handler.clearLevel();
-							rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
 						}
+						System.out.println("3");
 					}
+					rpg.Game.handler.clearLevel();
+					rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
 				}
 			}else if(t.getId()==Id.obj){
 				if(getBounds().intersects(t.getBoundsBottom())){

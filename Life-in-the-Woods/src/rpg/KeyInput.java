@@ -10,7 +10,7 @@ import rpg.entity.Entity;
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public boolean up, left, down, right,running,escape,coordinate;
+	public boolean up, left, down, right,running,escape,coordinate,enterdoor;
 	public static boolean inventory;
 	public static boolean debug;
 	
@@ -28,6 +28,18 @@ public class KeyInput implements KeyListener, FocusListener {
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		coordinate = keyStates[KeyEvent.VK_0];
+		enterdoor = keyStates[KeyEvent.VK_F];
+		if(enterdoor){
+			for(Entity en:Game.handler.entity) {
+				if(en.getId()==Id.player){
+					en.setY(en.getY()-200);
+					System.out.println("NEIN HAST DU NICHT");
+				}
+				System.out.println("3");
+			}
+			rpg.Game.handler.clearLevel();
+			rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
+		}
 		if(escape){
 			for(Entity en:Game.handler.entity) {
 				if(en.getId()==Id.player){
