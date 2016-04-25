@@ -14,6 +14,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -64,7 +65,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 	public ImageObserver observer;
-	
+	Inventory inv = new Inventory();
 	
 	public synchronized void start() {
 		if(running) return;
@@ -93,6 +94,9 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
+		if(KeyInput.inventory){
+				Inventory.inv.setVisible(true);
+		}
 		if(KeyInput.debug){
 			String s = texts[0];
 			char[] c = s.toCharArray();
@@ -148,7 +152,7 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-		texts[0] = "Hallo " + Handler.g.getName() + " wie geht es dir?";
+		texts[0] = "Hallo " + Handler.g.getName();
 		
      	sheet = new SpriteSheet("/Character/normal.png");
      	
