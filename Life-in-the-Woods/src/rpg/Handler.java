@@ -54,6 +54,19 @@ public class Handler {
 		for(BackgroundTile bti:btile){
 			bti.tick();
 		}
+		remove();
+	}
+	
+	private void remove() {
+		for (int i = 0; i < tile.size(); i++) {
+			if (tile.get(i).isRemoved()) tile.remove(i);
+		}
+		for(int i = 0; i < entity.size(); i++) {
+			if(entity.get(i).isRemoved()) entity.remove(i);
+		}
+		for(int i = 0; i < btile.size(); i++) {
+			if(btile.get(i).isRemoved()) btile.remove(i);
+		}
 	}
 	
 	public void addEntity(Entity en){
@@ -69,10 +82,15 @@ public class Handler {
 	}
 	
 	public void clearLevel() {
-        entity.clear();
-        tile.clear();
-        btile.clear();
-        System.out.println("cleared");
+       for(int i = 0; i < tile.size(); i++) {
+    	   tile.get(i).remove();
+       }
+       for(int i = 0; i < entity.size(); i++) {
+    	   entity.get(i).remove();
+       }
+       for(int i = 0; i < btile.size(); i++) {
+    	   btile.get(i).remove();
+       }
     }
 	
 	public void createLevel(String file){

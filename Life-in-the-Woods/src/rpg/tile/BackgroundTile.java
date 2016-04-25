@@ -13,7 +13,8 @@ public abstract class BackgroundTile {
 	
 	public long arrayzahl;
 	
-	public Boolean solid;
+	public boolean solid;
+	public boolean removed;
 
 	public Id id;
 	
@@ -28,10 +29,19 @@ public abstract class BackgroundTile {
 			this.handler = handler;
 			this.solid = solid;
 			this.arrayzahl = arrayzahl;
+			this.removed = false;
 		}
 	 
 	public abstract void render(Graphics g);
 	public abstract void tick();
+	
+	public void remove() {
+		this.removed = true;
+	}
+	
+	public boolean isRemoved() {
+		return this.removed;
+	}
 	
     public int getX() {
         return x;
