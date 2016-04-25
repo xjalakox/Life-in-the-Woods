@@ -66,7 +66,6 @@ public class Game extends Canvas implements Runnable {
 	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 	public ImageObserver observer;
 	Inventory inv = new Inventory();
-	public boolean inv_b = false;
 	
 	public synchronized void start() {
 		if(running) return;
@@ -96,13 +95,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void render() {
 		if(KeyInput.inventory){
-			if(inv_b == false){
 				Inventory.inv.setVisible(true);
-				inv_b = true;
-			}else{
-				Inventory.inv.setVisible(false);
-				inv_b = false;
-			}
 		}
 		if(KeyInput.debug){
 			String s = texts[0];
