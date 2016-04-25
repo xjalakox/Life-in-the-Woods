@@ -6,6 +6,7 @@ public class LevelChanger {
 	static SoundManager manager = new SoundManager();
 	
 	public static void ChangeLevel(String levelPath){
+		Game.handler.clearLevel();
 		Game.handler.createLevel(levelPath);
 	}
 	

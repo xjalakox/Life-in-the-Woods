@@ -13,6 +13,8 @@ public abstract class Entity {
 
 	public Id id;
 	
+	public boolean removed;
+	
 	public Handler handler;
 	public boolean animate;
 	
@@ -23,10 +25,19 @@ public abstract class Entity {
 			this.h = h;
 			this.id = id;
 			this.handler = handler;
+			this.removed = false;
 		}
 	 
 	public abstract void render(Graphics g);
 	public abstract void tick();
+	
+	public boolean isRemoved() {
+		return this.removed;
+	}
+	
+	public void remove() {
+		this.removed = true;
+	}
 	
 	public int getX() {
 		return x;
