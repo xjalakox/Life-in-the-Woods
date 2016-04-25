@@ -1,16 +1,27 @@
 package rpg;
 
-import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 
 public class Inventory {
-	public static JLabel inv;
+	public BufferedImage inv = null;
+	
 	public Inventory(){
-		Image inv_bg = new ImageIcon(this.getClass().getResource("/Inventory/inv_bg.png")).getImage();;
-		inv = new JLabel(new ImageIcon(inv_bg));
-		inv.setVisible(false);
-		inv.setBounds(0,0,700,700);
+
+	}
+
+	public void render(Graphics g) {
+		try {
+			inv = ImageIO.read(new File("res/Inventory/inv_bg.png"));
+			System.out.println(inv.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g.drawImage(inv, 0, 0, inv.getWidth(), inv.getHeight(), null);
+	
 	}
 }

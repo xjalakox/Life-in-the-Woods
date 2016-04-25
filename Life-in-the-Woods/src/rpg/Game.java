@@ -57,6 +57,7 @@ public class Game extends Canvas implements Runnable {
 	public static Sprite bg,ground;
 	
 	private boolean running = false;
+	private boolean showinv = false;
 	private Thread thread;
 	
 	private Color textc = new Color(138,60,34);
@@ -85,6 +86,9 @@ public class Game extends Canvas implements Runnable {
 	public void tick() {
 		handler.tick();
 		key.tick();
+		if(KeyInput.inventory) {
+			showinv = !showinv;
+		}
 		for(Entity e:Handler.entity){
 			if(e.getId()==Id.player) {
 				cam.tick(e);
@@ -92,11 +96,8 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 	}
-
+	
 	public void render() {
-		if(KeyInput.inventory){
-				Inventory.inv.setVisible(true);
-		}
 		if(KeyInput.debug){
 			String s = texts[0];
 			char[] c = s.toCharArray();
@@ -138,10 +139,12 @@ public class Game extends Canvas implements Runnable {
 			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
-			
 			g2d.translate(cam.getX(), cam.getY());
 			handler.render(g);
 			g2d.translate(-cam.getX(), -cam.getY());
+			if(showinv) {
+				inv.render(g);
+			}
 			
 			g.dispose();
 			bs.show();
