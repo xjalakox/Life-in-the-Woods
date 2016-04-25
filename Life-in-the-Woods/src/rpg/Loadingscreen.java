@@ -30,7 +30,7 @@ public class Loadingscreen extends JFrame {
 					JFrame gameframe = new JFrame("RPG");
 					gameframe.setExtendedState(Frame.MAXIMIZED_BOTH);
 					gameframe.setUndecorated(true);
-					gameframe.add(Inventory.inv);
+		
 					gameframe.add(game);
 					gameframe.pack();
 					gameframe.setResizable(false);
