@@ -20,7 +20,7 @@ public class Handler {
 	public static List<Entity> entity = new ArrayList<Entity>();
 	public static List<Tile> tile = new ArrayList<Tile>();
 	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
-	
+
 	public static SaveGame g = new SaveGame();
 	
 	public static player player;
@@ -93,12 +93,14 @@ public class Handler {
        }
     }
 	
-	public void createLevel(String file){
+	public void createLevel(String file, boolean[] Collision){
 
 		
 
-		addEntity(new player(g.getX(),g.getY(),60,84,Id.player,this, Game.key));
+		addEntity(new player(g.getX(),g.getY(),60,84,Id.player,this, Game.key)); 
 
+
+		
 		JSONObject map1 = JSONDecoder.loadMapData(file);
 		
 		
@@ -107,36 +109,105 @@ public class Handler {
 
 		for(int j=0;j<=21;j++){
 			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
-			if(opacity==1){
-				JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-				System.out.println("Welt wird geladen: " + j);
-				for(int i=0;i<data.size();i++){
-					long ids = (long) data.get(i);
-					if(i % 100 == 0){
-						b++;
-						a=0;
-					}
-					
-					if(ids==0){
+			
+				if(opacity==1){
+					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
+					System.out.println("Welt wird geladen: " + j);
+					for(int i=0;i<data.size();i++){
+						long ids = (long) data.get(i);
+						if(i % 100 == 0){
+							b++;
+							a=0;
+						}
 						
-					}else if(ids==1661||ids==1693){
-						addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
-						//addTile(new obj(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
-					}else if(ids>=320&&ids<=360){
-						addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
-					}else if(ids==193){
-						addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
-					}else if(ids>=2297&&ids<=2488){
-						addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
-					}else if(ids<=4000&&ids>=0){
-						addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
+						if(ids==0){
+							
+						}else if(ids==1661||ids==1693&&j!=2){
+							addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
+						}else if(ids>=320&&ids<=360&&j!=2){
+							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
+						}else if(ids==193&&j!=2){
+							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
+						}else if(ids>=2297&&ids<=2488&&j!=2){
+							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
+						}else if(ids<=4000&&ids>=0&&j!=2){
+							addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
+						}else{
+							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
+						}
+						a++;
 					}
-					a++;
+					b=0;
 				}
-				b=0;
+		}
+		
+		/*for(int j=0;j<=21;j++){
+			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
+			if(Collision[j] = true){
+				if(opacity==1){
+					System.out.println("why?");
+					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
+					System.out.println("Welt wird geladen: " + j);
+					for(int i=0;i<data.size();i++){
+						long ids = (long) data.get(i);
+						if(i % 100 == 0){
+							b++;
+							a=0;
+						}
+						
+						if(ids==0){
+							
+						}else if(ids==1661||ids==1693){
+							//addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
+						}else if(ids>=320&&ids<=360){
+							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
+						}else if(ids==193){
+							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
+						}else if(ids>=2297&&ids<=2488){
+							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
+						}else if(ids<=4000&&ids>=0){
+							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,true,(long) data.get(i)));
+						}
+						a++;
+					}
+					b=0;
+				}
+			}else{
+				if(opacity==1){
+					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
+					System.out.println("Welt wird geladen: " + j);
+					for(int i=0;i<data.size();i++){
+						long ids = (long) data.get(i);
+						if(i % 100 == 0){
+							b++;
+							a=0;
+						}
+						
+						if(ids==0){
+							
+						}else if(ids==1661||ids==1693){
+							addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
+						}else if(ids>=320&&ids<=360){
+							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
+						}else if(ids==193){
+							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
+						}else if(ids>=2297&&ids<=2488){
+							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
+						}else if(ids<=4000&&ids>=0){
+							addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
+						}
+						a++;
+					}
+					b=0;
+				}
 			}
 			
-		}
+			
+		}*/
+
+		
+		
+		
 		boolean visible = Loadingscreen.frame.isVisible();
 		if(visible=true){
 			Loadingscreen.frame.Close();

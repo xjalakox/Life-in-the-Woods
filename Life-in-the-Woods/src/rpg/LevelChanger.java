@@ -5,9 +5,9 @@ import rpg.audio.SoundManager;
 public class LevelChanger {
 	static SoundManager manager = new SoundManager();
 	
-	public static void ChangeLevel(String levelPath){
+	public static void ChangeLevel(String levelPath,boolean[] collision){
 		Game.handler.clearLevel();
-		Game.handler.createLevel(levelPath);
+		Game.handler.createLevel(levelPath,collision);
 	}
 	
 	public static void ChangeMusic(int newMusicID, int oldMusicID, boolean running){

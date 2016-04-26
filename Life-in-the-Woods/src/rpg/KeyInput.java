@@ -10,12 +10,16 @@ import rpg.entity.Entity;
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public boolean up, left, down, right,running,escape,coordinate,enterdoor;
+	public boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2;
 	public static boolean inventory;
 	public static boolean debug;
+	public boolean[] collision = new boolean[25];
 	
 	public KeyInput() {
 		keyStates = new boolean[65536];
+		collision[1] = true;
+		collision[10] = true;
+		collision[16] = true;
 	}
 	
 	public void tick() {
@@ -28,17 +32,27 @@ public class KeyInput implements KeyListener, FocusListener {
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		coordinate = keyStates[KeyEvent.VK_0];
-		enterdoor = keyStates[KeyEvent.VK_F];
-		if(enterdoor){
+		if(enterdoor2) {
+			enterdoor = keyStates[KeyEvent.VK_F];
+		}else{
+			
+		}
+		if(enterdoor&&enterdoor2){
 			for(Entity en:Game.handler.entity) {
 				if(en.getId()==Id.player){
-					en.setY(en.getY()-200);
-					System.out.println("NEIN HAST DU NICHT");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					en.setY(en.getY()-100);
+					Handler.g.setX(en.getX());
+					Handler.g.setY(en.getY());
 				}
-				System.out.println("3");
 			}
 			rpg.Game.handler.clearLevel();
-			rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
+			rpg.Game.handler.createLevel(rpg.Game.map1_noroof,collision);
 		}
 		if(escape){
 			for(Entity en:Game.handler.entity) {
@@ -47,7 +61,7 @@ public class KeyInput implements KeyListener, FocusListener {
 					Handler.g.setY(en.getY());
 				}
 			}
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 	
