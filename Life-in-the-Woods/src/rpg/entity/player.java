@@ -69,14 +69,11 @@ public class player extends Entity {
 		if(!rpg.Game.handler.tile.isEmpty())
 		for(Tile t : rpg.Game.handler.tile){
 			if(t.getId()==Id.door){
-				if(getBounds().intersects(t.getBounds())){
+				if(getBounds().intersects(t.getBoundsBottom())){
 					for(Entity en:Game.handler.entity) {
 						if(en.getId()==Id.player){
-							en.setY(en.getY()-200);
-							System.out.println("NEIN HAST DU NICHT");
-						
-							rpg.Game.handler.clearLevel();
-							rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
+							System.out.println("WTF?");
+							key.enterdoor2 = true;
 						}
 					}
 				}

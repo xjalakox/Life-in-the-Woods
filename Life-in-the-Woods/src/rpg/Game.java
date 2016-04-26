@@ -51,6 +51,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public static Sprite[] player = new Sprite[36];
 	
+	private boolean[] collision = new boolean[25];
+	
 	private int fps,ups;
 	
 	public static Sprite[] sprites = new Sprite[4000];
@@ -218,7 +220,7 @@ public class Game extends Canvas implements Runnable {
     	}
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
+    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json",collision);
 		
 		
 		
