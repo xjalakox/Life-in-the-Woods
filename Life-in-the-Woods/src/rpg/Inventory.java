@@ -17,11 +17,10 @@ public class Inventory {
 	public void render(Graphics g) {
 		try {
 			inv = ImageIO.read(new File("res/Inventory/inv_bg.png"));
-			System.out.println(inv.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g.drawImage(inv, 0, 0, inv.getWidth(), inv.getHeight(), null);
+		g.drawImage(inv, 100, 100, inv.getWidth(), inv.getHeight(), null);
 	
 	}
 }
