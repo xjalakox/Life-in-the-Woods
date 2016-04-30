@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
+import rpg.entity.npc;
 import rpg.entity.player;
 import rpg.json.JSONDecoder;
 import rpg.tile.Backg;
@@ -31,9 +32,11 @@ public class Handler {
             }
 		}
 		for(Entity en:entity){
-			if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
-                en.render(g);
-            }
+
+				if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
+					en.render(g);
+	            }
+			
 		}
 		for(BackgroundTile bti:btile){
 			if(Game.getVisisbleArea()!=null&&bti.getBounds().intersects(Game.getVisisbleArea())){
@@ -47,9 +50,11 @@ public class Handler {
 			ti.tick();
 		}
 		for(Entity en:entity){
-			if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
-                en.tick();
-            }
+
+				if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
+					en.tick();
+	            }
+			
 		}
 		for(BackgroundTile bti:btile){
 			bti.tick();
@@ -93,12 +98,11 @@ public class Handler {
        }
     }
 	
-	public void createLevel(String file, boolean[] Collision){
+	public void createLevel(String file){
 
 		
-
+		addEntity(new npc(2500,2500,60,84,Id.blacksmith,this));
 		addEntity(new player(g.getX(),g.getY(),60,84,Id.player,this, Game.key)); 
-
 
 		
 		JSONObject map1 = JSONDecoder.loadMapData(file);
@@ -140,71 +144,6 @@ public class Handler {
 					b=0;
 				}
 		}
-		
-		/*for(int j=0;j<=21;j++){
-			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
-			if(Collision[j] = true){
-				if(opacity==1){
-					System.out.println("why?");
-					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-					System.out.println("Welt wird geladen: " + j);
-					for(int i=0;i<data.size();i++){
-						long ids = (long) data.get(i);
-						if(i % 100 == 0){
-							b++;
-							a=0;
-						}
-						
-						if(ids==0){
-							
-						}else if(ids==1661||ids==1693){
-							//addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
-						}else if(ids>=320&&ids<=360){
-							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
-						}else if(ids==193){
-							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
-						}else if(ids>=2297&&ids<=2488){
-							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
-						}else if(ids<=4000&&ids>=0){
-							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,true,(long) data.get(i)));
-						}
-						a++;
-					}
-					b=0;
-				}
-			}else{
-				if(opacity==1){
-					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-					System.out.println("Welt wird geladen: " + j);
-					for(int i=0;i<data.size();i++){
-						long ids = (long) data.get(i);
-						if(i % 100 == 0){
-							b++;
-							a=0;
-						}
-						
-						if(ids==0){
-							
-						}else if(ids==1661||ids==1693){
-							addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,this,false,(long) data.get(i)));
-						}else if(ids>=320&&ids<=360){
-							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
-						}else if(ids==193){
-							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
-						}else if(ids>=2297&&ids<=2488){
-							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
-						}else if(ids<=4000&&ids>=0){
-							addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
-						}
-						a++;
-					}
-					b=0;
-				}
-			}
-			
-			
-		}*/
-
 		
 		
 		

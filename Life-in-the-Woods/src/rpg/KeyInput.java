@@ -10,16 +10,12 @@ import rpg.entity.Entity;
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2;
+	public boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2,talk_npc;
 	public static boolean inventory;
 	public static boolean debug;
-	public boolean[] collision = new boolean[25];
 	
 	public KeyInput() {
 		keyStates = new boolean[65536];
-		collision[1] = true;
-		collision[10] = true;
-		collision[16] = true;
 	}
 	
 	public void tick() {
@@ -31,6 +27,7 @@ public class KeyInput implements KeyListener, FocusListener {
 		inventory = keyStates[KeyEvent.VK_E];
 		running = keyStates[KeyEvent.VK_SHIFT];
 		escape = keyStates[KeyEvent.VK_ESCAPE];
+		talk_npc = keyStates[KeyEvent.VK_ENTER];
 		coordinate = keyStates[KeyEvent.VK_0];
 		if(enterdoor2) {
 			enterdoor = keyStates[KeyEvent.VK_F];
@@ -52,7 +49,7 @@ public class KeyInput implements KeyListener, FocusListener {
 				}
 			}
 			rpg.Game.handler.clearLevel();
-			rpg.Game.handler.createLevel(rpg.Game.map1_noroof,collision);
+			rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
 		}
 		if(escape){
 			for(Entity en:Game.handler.entity) {

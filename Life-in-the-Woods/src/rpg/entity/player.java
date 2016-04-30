@@ -1,19 +1,26 @@
 package rpg.entity;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
+import rpg.Loadingscreen;
 import rpg.tile.Tile;
 
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
 	private int anim;
+	
+	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -38,9 +45,8 @@ public class player extends Entity {
 			g.drawImage(Game.player[27+frame].getBufferedImage(), x,y,w,h, null);
 			anim = 3;
 		}
-		g.setColor(Color.BLUE);
+
 		//g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
-		g.drawRect(getX()-960, getY()-540, 1920, 1080);
 	}
 
 	@Override
@@ -66,13 +72,11 @@ public class player extends Entity {
 	}
 
 	private boolean collision() {
-		if(!rpg.Game.handler.tile.isEmpty())
 		for(Tile t : rpg.Game.handler.tile){
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())){
 					for(Entity en:Game.handler.entity) {
 						if(en.getId()==Id.player){
-							System.out.println("WTF?");
 							key.enterdoor2 = true;
 						}
 					}
@@ -92,6 +96,39 @@ public class player extends Entity {
 				}
 			}
 		}
+		
+		for(Entity en:Game.handler.entity) {
+			if(en.getId()==Id.blacksmith){
+				if(getBounds().intersects(en.getBoundsBottom())){
+					if(key.talk_npc){
+						en.facing = 2;
+						Loadingscreen.game.drawText();
+					}
+					key.up = false;
+				}
+				if(getBounds().intersects(en.getBoundsRight())){
+					if(key.talk_npc){
+						en.facing = 3;
+					}
+					key.left = false;
+				}
+				if(getBounds().intersects(en.getBoundsLeft())){
+					if(key.talk_npc){
+						en.facing = 1;
+					}
+					key.right = false;
+				}
+				if(getBounds().intersects(en.getBoundsTop())){
+					if(key.talk_npc){
+						en.facing = 0;
+					}
+					key.down = false;
+				}
+			}
+		}
+		
+		
+		
 		return false;
 	}
 	
@@ -111,5 +148,26 @@ public class player extends Entity {
              }
          frameDelay = 0;
         }	
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(getX()+7, getY()+65, getW()-14, getH()-65);
+	}
+	
+	public Rectangle getBoundsBottom(){
+		return new Rectangle(getX()+7, getY()+65, getW()-14, getH()-65);
+	}
+	
+	public Rectangle getBoundsTop(){
+		return new Rectangle(getX()*2, getY()*2-10, getW()*2, getH()*2-54);
+	}
+	
+	public Rectangle getBoundsRight(){
+		return new Rectangle(getX()*2+64, getY()*2, getW()*2-54, getH()*2);
+	}
+	
+	public Rectangle getBoundsLeft(){
+		return new Rectangle(getX()*2-10, getY()*2, getW()*2-54, getH()*2);
 	}
 }
