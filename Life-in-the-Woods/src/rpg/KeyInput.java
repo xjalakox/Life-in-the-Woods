@@ -61,7 +61,7 @@ public class KeyInput implements KeyListener, FocusListener {
 					Handler.g.setY(en.getY());
 				}
 			}
-			//System.exit(0);
+			System.exit(0);
 		}
 	}
 	
