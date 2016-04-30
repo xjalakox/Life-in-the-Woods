@@ -12,17 +12,21 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import rpg.entity.Entity;
-import rpg.entity.player;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
+import rpg.gui.Gui;
+import rpg.gui.GuiAction;
+import rpg.gui.GuiElement;
 import rpg.json.JSONDecoder;
 import rpg.tile.Tile;
 
@@ -72,6 +76,7 @@ public class Game extends Canvas implements Runnable {
 	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 	public ImageObserver observer;
 	Inventory inv = new Inventory();
+	Gui gui = new Gui();
 	
 	public synchronized void start() {
 		if(running) return;
@@ -99,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 				cam.tick(e);
 			}
 		}
-		
+		gui.tick();
 	}
 	
 	public void render() {
@@ -120,6 +125,18 @@ public class Game extends Canvas implements Runnable {
 				drawText();
 				g2d.translate(-cam.getX(), -cam.getY());
 				
+<<<<<<< HEAD
+=======
+				/*CODE FÜR SCROLLTEXT*/
+				test = test + c[i];
+				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
+				g.setColor(textc);
+				g.drawImage(scrolltext_bg, 700, 900, observer);
+				g.drawString(test, 800, 1000);
+				inv.render(g);
+				pause(100);
+				/*CODE FÜR SCROLLTEXT*/
+>>>>>>> origin/master
 				
 				g.dispose();
 				bs.show();
@@ -137,9 +154,11 @@ public class Game extends Canvas implements Runnable {
 			g2d.translate(cam.getX(), cam.getY());
 			handler.render(g);
 			g2d.translate(-cam.getX(), -cam.getY());
-			if(showinv) {
-				inv.render(g);
-			}
+			
+			//g.fillRect(MouseInput.getX(), MouseInput.getY(), 64, 64);
+			//g.drawString(MouseInput.getButton() + "", MouseInput.getX(), MouseInput.getY());
+
+			gui.render(g);
 			
 			g.dispose();
 			bs.show();
@@ -211,6 +230,50 @@ public class Game extends Canvas implements Runnable {
 		cam = new Camera();		
 		key = new KeyInput();
 		addKeyListener(key);
+		
+		MouseInput mouse = new MouseInput();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
+		
+		
+		/* GUI Elemente */
+		try {
+			GuiElement cancel = new GuiElement(1750, 20, ImageIO.read(new File("res/Gui/cancel.png")), new GuiAction() {
+				public void action() {
+					System.exit(0);
+				}
+			});
+			gui.addGuiElement(cancel);
+			GuiElement health = new GuiElement(20, 950, ImageIO.read(new File("res/Gui/health.png")), new GuiAction() {
+				public void action() {
+					
+				}
+			});
+			gui.addGuiElement(health);
+			GuiElement menu = new GuiElement(1770, 930, ImageIO.read(new File("res/Gui/menu.png")), new GuiAction() {
+				public void action() {
+					
+				}
+			});
+			gui.addGuiElement(menu);
+			GuiElement inventory = new GuiElement(1620, 930, ImageIO.read(new File("res/Gui/inventory.png")), new GuiAction() {
+				public void action() {
+					
+				}
+			});
+			gui.addGuiElement(inventory);
+			GuiElement quest = new GuiElement(1460, 935, ImageIO.read(new File("res/Gui/quest.png")), new GuiAction() {
+				public void action() {
+					
+				}
+			});
+			gui.addGuiElement(quest);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		/* GUI Elemente */
+		
 		
 		int p = 0;
      	
