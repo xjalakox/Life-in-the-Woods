@@ -13,14 +13,13 @@ import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
 import rpg.Loadingscreen;
+import rpg.gui.TextDraw;
 import rpg.tile.Tile;
 
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
 	private int anim;
-	
-	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -102,7 +101,7 @@ public class player extends Entity {
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc){
 						en.facing = 2;
-						Loadingscreen.game.drawText();
+						TextDraw.drawText(0);
 					}
 					key.up = false;
 				}
