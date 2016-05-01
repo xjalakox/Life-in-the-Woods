@@ -31,6 +31,7 @@ import rpg.gui.GuiAction;
 import rpg.gui.GuiButton;
 import rpg.gui.GuiMap;
 import rpg.json.JSONDecoder;
+import rpg.tile.Tile;
 
 
 @SuppressWarnings("serial")
@@ -60,6 +61,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean[] collision = new boolean[25];
 	
+	private BufferStrategy bs;
+	
 	private int fps,ups;
 	
 	public static Sprite[] sprites = new Sprite[4000];
@@ -69,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean showinv = false;
 	private Thread thread;
 	
-	private Color textc = new Color(138,60,34);
+	public static Color textc = new Color(138,60,34);
 	
 	public static Handler handler;
 	
@@ -109,11 +112,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public void render() {
 		if(KeyInput.debug){
-			String s = texts[0];
-			char[] c = s.toCharArray();
-			String test = "";
-			for(int i = 0; i < c.length; i++){
-				BufferStrategy bs = getBufferStrategy();
+
+				bs = getBufferStrategy();
 				if(bs==null) {
 					createBufferStrategy(4);
 					return;
@@ -125,8 +125,11 @@ public class Game extends Canvas implements Runnable {
 				
 				g2d.translate(cam.getX(), cam.getY());
 				handler.render(g);
+				drawText();
 				g2d.translate(-cam.getX(), -cam.getY());
 				
+<<<<<<< HEAD
+=======
 				/*CODE FÜR SCROLLTEXT*/
 				test = test + c[i];
 				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
@@ -136,12 +139,13 @@ public class Game extends Canvas implements Runnable {
 				inv.render(g);
 				pause(100);
 				/*CODE FÜR SCROLLTEXT*/
+>>>>>>> origin/master
 				
 				g.dispose();
 				bs.show();
-			}
+
 		}else{
-			BufferStrategy bs = getBufferStrategy();
+			bs = getBufferStrategy();
 			if(bs==null) {
 				createBufferStrategy(4);
 				return;
@@ -160,6 +164,28 @@ public class Game extends Canvas implements Runnable {
 			//g.drawString(MouseInput.getButton() + "", MouseInput.getX(), MouseInput.getY());
 
 			gui.render(g);
+			
+			g.dispose();
+			bs.show();
+		}
+	}
+	
+	public void drawText(){
+
+		String s = texts[0];
+		char[] c = s.toCharArray();
+		String test = "";
+		for(int i = 0; i < c.length; i++){
+			bs = getBufferStrategy();
+			Graphics g = bs.getDrawGraphics();
+			
+
+			test = test + c[i];
+			g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
+			g.setColor(textc);
+			g.drawImage(scrolltext_bg, 700, 900, observer);
+			g.drawString(test, 800, 1000);
+			pause(100);
 			
 			g.dispose();
 			bs.show();
@@ -294,7 +320,7 @@ public class Game extends Canvas implements Runnable {
     	}
     	
     	LevelChanger.ChangeMusic(1,1,false);
-    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json",collision);
+    	LevelChanger.ChangeLevel("res/Maps/map1_roof.json");
 		
 		
 		
@@ -344,7 +370,7 @@ public class Game extends Canvas implements Runnable {
 
 	}
 	
-	public void pause(int test){
+	public static void pause(int test){
 		try {
 			Thread.sleep(test);
 		} catch (InterruptedException e) {

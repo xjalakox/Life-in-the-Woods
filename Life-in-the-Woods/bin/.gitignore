@@ -1,11 +1,17 @@
-/Savegames/
 /rpg/
+<<<<<<< HEAD
+/Savegames/
+=======
 /Inventory/
 /Gui/
 /Maps/
+<<<<<<< HEAD
 /Test.class
 /ImageScaler.class
 /ImageScaler$ImageType.class
 /ImageScaler$ScaleType.class
 /ImageScaler$ScalingDirection.class
 /Tiles/
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master

@@ -95,8 +95,20 @@ public abstract class Entity {
 		this.id = id;
 	}
 	
-	
-	public Rectangle getBounds(){
+
+	/*public Rectangle getBounds(){
 		return new Rectangle(getX()+7, getY()+65, getW()-14, getH()-65);
-	}
+	}*/
+	
+	public abstract Rectangle getBounds();
+
+	public abstract Rectangle getBoundsTop();
+
+	public abstract Rectangle getBoundsBottom();
+
+	public abstract Rectangle getBoundsLeft();
+
+
+	public abstract Rectangle getBoundsRight();
+	
 }
