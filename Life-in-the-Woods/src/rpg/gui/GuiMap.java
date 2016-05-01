@@ -42,7 +42,7 @@ public class GuiMap extends GuiElement {
 			this.zoom = 260;
 			return;
 		}
-		this.zoom += (-MouseInput.getWheelRotation())*3;
+		this.zoom += (-MouseInput.getWheelRotation())*20;
 		System.out.println(zoom);
 		MouseInput.setWheelRotation(0);
 	}

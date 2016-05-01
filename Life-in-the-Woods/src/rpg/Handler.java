@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javazoom.jl.player.Player;
+import rpg.audio.SoundManager;
 import rpg.entity.Entity;
 import rpg.entity.npc;
 import rpg.entity.player;
@@ -22,6 +23,8 @@ public class Handler {
 	public static List<Entity> entity = new ArrayList<Entity>();
 	public static List<Tile> tile = new ArrayList<Tile>();
 	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
+	
+	public static SoundManager manager = new SoundManager();
 
 	public static SaveGame g = new SaveGame();
 	public static Texts texts = new Texts();
@@ -100,6 +103,26 @@ public class Handler {
     	   btile.get(i).remove();
        }
     }
+	
+	public void ChangeLevel(String levelPath){
+		Game.handler.clearLevel();
+		Game.handler.createLevel(levelPath);
+	}
+	
+	public void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
+		if(oldMusicID==0){
+		//	manager.playSound(newMusicID);
+		}else if(oldMusicID==newMusicID&&!running){
+		//	manager.playSound(newMusicID);
+		}else if(oldMusicID==newMusicID){
+			
+		}else{
+	//		manager.stopSound(oldMusicID);
+		//	manager.playSound(newMusicID);
+		}
+		if(!Game.DEBUG) manager.fadeInSound(newMusicID);
+	}
+
 	
 	public void createLevel(String file){
 

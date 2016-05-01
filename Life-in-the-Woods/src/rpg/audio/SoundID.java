@@ -10,7 +10,7 @@ public enum SoundID {
      
     //Effects
     brickeffect     (   3,  "brick",        1),
-    jumpeffect      (   4,  "jump",         1),
+    click     		(   4,  "click",         1),
     coineffect      (   5,  "coin",         1),
     coin_appear     (   6,  "coin_appear",  1),
     editor_menu     (   7,  "editor_menu",  1),

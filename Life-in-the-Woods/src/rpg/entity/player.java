@@ -101,7 +101,7 @@ public class player extends Entity {
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc){
 						en.facing = 2;
-						TextDraw.drawText(0);
+						TextDraw.drawText(1);
 					}
 					key.up = false;
 				}
