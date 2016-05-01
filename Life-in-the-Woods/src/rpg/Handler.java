@@ -23,6 +23,7 @@ public class Handler {
 	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 
 	public static SaveGame g = new SaveGame();
+	public static Texts texts = new Texts();
 	
 	public static player player;
 	public void render(Graphics g){

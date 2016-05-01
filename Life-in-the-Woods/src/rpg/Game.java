@@ -27,8 +27,8 @@ import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
 import rpg.gui.GuiAction;
 import rpg.gui.GuiElement;
+import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
-import rpg.tile.Tile;
 
 
 @SuppressWarnings("serial")
@@ -77,6 +77,7 @@ public class Game extends Canvas implements Runnable {
 	public ImageObserver observer;
 	Inventory inv = new Inventory();
 	Gui gui = new Gui();
+	TextDraw draw = new TextDraw();
 	
 	public synchronized void start() {
 		if(running) return;
@@ -105,6 +106,7 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 		gui.tick();
+		draw.tick();
 	}
 	
 	public void render() {
@@ -124,19 +126,6 @@ public class Game extends Canvas implements Runnable {
 				handler.render(g);
 				drawText();
 				g2d.translate(-cam.getX(), -cam.getY());
-				
-<<<<<<< HEAD
-=======
-				/*CODE FÜR SCROLLTEXT*/
-				test = test + c[i];
-				g.setFont(g.getFont().deriveFont(Font.PLAIN, 40));
-				g.setColor(textc);
-				g.drawImage(scrolltext_bg, 700, 900, observer);
-				g.drawString(test, 800, 1000);
-				inv.render(g);
-				pause(100);
-				/*CODE FÜR SCROLLTEXT*/
->>>>>>> origin/master
 				
 				g.dispose();
 				bs.show();
@@ -158,6 +147,7 @@ public class Game extends Canvas implements Runnable {
 			//g.fillRect(MouseInput.getX(), MouseInput.getY(), 64, 64);
 			//g.drawString(MouseInput.getButton() + "", MouseInput.getX(), MouseInput.getY());
 
+			draw.render(g);
 			gui.render(g);
 			
 			g.dispose();
