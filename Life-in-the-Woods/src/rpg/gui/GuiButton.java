@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import rpg.MouseInput;
+import rpg.util.ImageUtils;
 
 public class GuiButton extends GuiElement{
 	

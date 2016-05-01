@@ -17,6 +17,7 @@ import rpg.gui.TextDraw;
 import rpg.tile.Tile;
 
 public class player extends Entity {
+	public  static boolean mapopen;
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
 	private int anim;
@@ -54,19 +55,24 @@ public class player extends Entity {
 			System.out.println("X: " + getX() + "Y: " + getY());
 		}
 		if(!collision()) {
-			if(key.up) {
-				if(key.running)y -=6; else y-=3;
-				animate();
-			} else if(key.down) {
-				if(key.running)y +=6; else y+=3;
-				animate();
-			} else if(key.right) {
-				if(key.running)x +=6; else x+=3;
-				animate();
-			} else if(key.left) {
-				if(key.running)x -=6; else x-=3;
-				animate();
+			
+			if(!mapopen){
+				if(key.up) {
+					if(key.running)y -=6; else y-=3;
+					animate();
+				} else if(key.down) {
+					if(key.running)y +=6; else y+=3;
+					animate();
+				} else if(key.right) {
+					if(key.running)x +=6; else x+=3;
+					animate();
+				} else if(key.left) {
+					if(key.running)x -=6; else x-=3;
+					animate();
+				}
 			}
+			
+			
 		}
 	}
 

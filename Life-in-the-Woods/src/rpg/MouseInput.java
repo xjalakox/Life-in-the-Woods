@@ -12,6 +12,7 @@ public class MouseInput implements MouseListener, MouseMotionListener, MouseWhee
 	private static int mouseY = -1;
 	private static int mouseBtn = MouseEvent.NOBUTTON;
 	private static int mouseWheel = 0;
+	private static boolean mouseDragged = false;
 	
 	public static int getX() {
 		return mouseX;
@@ -47,17 +48,24 @@ public class MouseInput implements MouseListener, MouseMotionListener, MouseWhee
 	@Override
 	public void mousePressed(MouseEvent e) {
 		mouseBtn = e.getButton();
+		mouseX = e.getX();
+		mouseY = e.getY();
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		mouseBtn = MouseEvent.NOBUTTON;
+		mouseX = e.getX();
+		mouseY = e.getY();
+		mouseDragged = false;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
+		mouseDragged = true;
 	}
 
 	@Override
@@ -73,6 +81,10 @@ public class MouseInput implements MouseListener, MouseMotionListener, MouseWhee
 
 	public static void setWheelRotation(int i) {
 		mouseWheel = i;		
+	}
+
+	public static boolean isDragged() {
+		return mouseDragged;
 	}
 
 }
