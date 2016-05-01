@@ -34,7 +34,7 @@ public class Texts {
         if(scan.hasNext()){
             try{
                 for(int i=0;i<=250;i++){
-                	this.text[i] = scan.next();
+                	this.text[i] = scan.nextLine();
                 }
             } catch (Exception e) {
                 //setToDefault();
