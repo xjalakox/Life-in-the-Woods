@@ -7,6 +7,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javazoom.jl.player.Player;
 import rpg.entity.Entity;
 import rpg.entity.player;
 import rpg.json.JSONDecoder;
@@ -24,6 +25,7 @@ public class Handler {
 	public static SaveGame g = new SaveGame();
 	
 	public static player player;
+	
 	public void render(Graphics g){
 		for(Tile ti:tile){
 			if(Game.getVisisbleArea()!=null&&ti.getBounds().intersects(Game.getVisisbleArea())){

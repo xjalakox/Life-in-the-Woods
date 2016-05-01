@@ -4,26 +4,25 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class GuiElement {
-	private Rectangle rect;
-	private BufferedImage image;
-	private GuiAction action;
+public abstract class GuiElement {
+	protected int x;
+	protected int y;
+	private boolean visible;
 	
-	public GuiElement(int x, int y, BufferedImage image, GuiAction action) {
-		this.image = image;
-		this.action = action;
-		rect = new Rectangle(x, y, image.getWidth(), image.getHeight());
+	public GuiElement(int x, int y) {
+		this.x = x;
+		this.y = y;
+		visible = true;
 	}
 	
-	public void render(Graphics g) {
-		g.drawImage(image, (int)rect.getX(),(int) rect.getY(), null);
+	public abstract void render(Graphics g);
+	public abstract void tick();
+	
+	public boolean isVisible() {
+		return visible;
 	}
 	
-	public void tick() {
-		action.action();
+	public void setVisible(boolean b) {
+		visible = b;
 	}
-	
-	public Rectangle getRect() {
-		return rect;
-	}
-}
+ }

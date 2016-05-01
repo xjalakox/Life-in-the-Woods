@@ -3,12 +3,15 @@ package rpg;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
-public class MouseInput implements MouseListener, MouseMotionListener{
+public class MouseInput implements MouseListener, MouseMotionListener, MouseWheelListener{
 	
 	private static int mouseX = -1;
 	private static int mouseY = -1;
 	private static int mouseBtn = MouseEvent.NOBUTTON;
+	private static int mouseWheel = 0;
 	
 	public static int getX() {
 		return mouseX;
@@ -20,6 +23,10 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 	
 	public static int getButton() {
 		return mouseBtn;
+	}
+	
+	public static int getWheelRotation() {
+		return mouseWheel;
 	}
 	
 	@Override
@@ -57,6 +64,15 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		mouseWheel = (int) e.getPreciseWheelRotation();
+	}
+
+	public static void setWheelRotation(int i) {
+		mouseWheel = i;		
 	}
 
 }

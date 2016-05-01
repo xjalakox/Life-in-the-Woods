@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import rpg.MouseInput;
 
 public class Gui {
-	public BufferedImage cancel,done,health,inventory,map,market,menu,options,quest,questionmark,rotate = null;
+	
 	private List<GuiElement> elements = new ArrayList<GuiElement>();
 	
 	public Gui(){
@@ -23,16 +23,22 @@ public class Gui {
 	public void addGuiElement(GuiElement element) {
 		elements.add(element);
 	}
+	
+	public void removeGuiElement(GuiElement element){
+		elements.remove(element);
+	}
 
 	public void render(Graphics g) {
 		for(GuiElement element : elements) {
-			element.render(g);
+			if(element.isVisible()) {
+				element.render(g);
+			}
 		}
 	}
 	
 	public void tick() {
 		for(GuiElement element : elements) {
-			if(element.getRect().contains(new Point(MouseInput.getX(), MouseInput.getY())) && MouseInput.getButton() == MouseEvent.BUTTON1) {
+			if(element.isVisible()) {
 				element.tick();
 			}
 		}

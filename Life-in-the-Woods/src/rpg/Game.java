@@ -10,7 +10,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,8 @@ import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
 import rpg.gui.GuiAction;
-import rpg.gui.GuiElement;
+import rpg.gui.GuiButton;
+import rpg.gui.GuiMap;
 import rpg.json.JSONDecoder;
 
 
@@ -143,6 +146,8 @@ public class Game extends Canvas implements Runnable {
 				createBufferStrategy(4);
 				return;
 			}
+
+			
 			Graphics g = bs.getDrawGraphics();
 			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(Color.WHITE);
@@ -208,40 +213,57 @@ public class Game extends Canvas implements Runnable {
 		MouseInput mouse = new MouseInput();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
+		addMouseWheelListener(mouse);
 		
-		
+	
 		/* GUI Elemente */
 		try {
-			GuiElement cancel = new GuiElement(1750, 20, ImageIO.read(new File("res/Gui/cancel.png")), new GuiAction() {
+			GuiMap map = new GuiMap(230, 20, 1220, 930);
+			map.setVisible(false);
+			gui.addGuiElement(map);
+			
+			GuiButton cancel = new GuiButton(1750, 20, ImageIO.read(new File("res/Gui/cancel.png")), new GuiAction() {
 				public void action() {
 					System.exit(0);
 				}
 			});
 			gui.addGuiElement(cancel);
-			GuiElement health = new GuiElement(20, 950, ImageIO.read(new File("res/Gui/health.png")), new GuiAction() {
+			
+			GuiButton health = new GuiButton(20, 950, ImageIO.read(new File("res/Gui/health.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
 			gui.addGuiElement(health);
-			GuiElement menu = new GuiElement(1770, 930, ImageIO.read(new File("res/Gui/menu.png")), new GuiAction() {
+			
+			
+			GuiButton menu = new GuiButton(1770, 930, ImageIO.read(new File("res/Gui/menu.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
 			gui.addGuiElement(menu);
-			GuiElement inventory = new GuiElement(1620, 930, ImageIO.read(new File("res/Gui/inventory.png")), new GuiAction() {
+			
+			GuiButton inventory = new GuiButton(1620, 930, ImageIO.read(new File("res/Gui/inventory.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
 			gui.addGuiElement(inventory);
-			GuiElement quest = new GuiElement(1460, 935, ImageIO.read(new File("res/Gui/quest.png")), new GuiAction() {
+			
+			GuiButton quest = new GuiButton(1460, 935, ImageIO.read(new File("res/Gui/quest.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
 			gui.addGuiElement(quest);
+			
+			GuiButton map_button = new GuiButton(30, 840, ImageIO.read(new File("res/Gui/map_button.png")), new GuiAction() {
+				public void action() {
+					map.setVisible(!map.isVisible());
+				}
+			});
+			gui.addGuiElement(map_button);	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -350,6 +372,16 @@ public class Game extends Canvas implements Runnable {
         return null;
     }
 	
+	public static BufferedImage scale(BufferedImage sbi, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
+	    BufferedImage dbi = null;
+	    if(sbi != null) {
+	        dbi = new BufferedImage(dWidth, dHeight, imageType);
+	        Graphics2D g = dbi.createGraphics();
+	        AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
+	        g.drawRenderedImage(sbi, at);
+	    }
+	    return dbi;
+	}
 	
 
 }
